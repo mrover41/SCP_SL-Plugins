@@ -50,7 +50,7 @@ namespace Corwarx_Project {
 
         private void OnSpawnRole(SpawnRoleEventArg ev) {
             Log.Debug("===EVENT===");
-            Log.Debug($"Spawning role: {ev.Role.Name}");
+            //Log.Debug($"Spawning role: {ev.Role.Name}");
         }
 
         private void OnLodadPlugin(LoadPluginEventArgs ev) {

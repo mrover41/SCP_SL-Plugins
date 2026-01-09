@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Modules\" />
-    <Folder Include="Roles\" />
   </ItemGroup>
 
   <ItemGroup>
