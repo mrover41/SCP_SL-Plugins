@@ -1,5 +1,6 @@
 using Corwarx_Project.Features.RoleSystem.BaseClass;
 using Exiled.API.Features;
+using UnityEngine;
 
 namespace Corwarx_Roles.Roles.InstanceComponents {
     public class TestRoleInstanceComponent : RoleInstanceComponentBase {
@@ -7,8 +8,13 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
         }
 
         public override void OnAdd() {
-            Log.Info("AAAAAAAAAAa");
+            Player.Scale = Vector3.one * 0.1f;
             base.OnAdd();
+        }
+
+        public override void OnRemove() {
+            Player.Scale = Vector3.one;
+            base.OnRemove();
         }
     }
 }
