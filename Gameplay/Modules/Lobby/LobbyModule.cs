@@ -31,7 +31,7 @@ namespace Gameplay.Modules.Lobby {
             if (!Round.IsLobby) 
                 return;
             ev.Player.Role.Set(RoleTypeId.Tutorial);
-            ev.Player.Teleport(RoomType.EzIntercom);
+            ev.Player.Teleport(Room.Get(RoomType.EzIntercom).Transform.TransformPoint(-4.3f, -4.86f, -2.7f));
         }
 
         private void OnRoundStarted() {
