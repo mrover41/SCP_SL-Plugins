@@ -20,7 +20,7 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
         }
 
         public static void AddRole(Player player, int id) {
-            RoleBase role = Roles.Find(x => x.ID == id);
+            RoleBase role = Roles.Find(x => x.RoleConfig.ID == id);
             if (role == null)
                 return;
             

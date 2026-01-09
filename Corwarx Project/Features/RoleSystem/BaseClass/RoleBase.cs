@@ -6,8 +6,10 @@ using Exiled.API.Features;
 namespace Corwarx_Project.Features.RoleSystem.BaseClass {
     public abstract class RoleBase {
         protected static List<Player> Players = new List<Player>();
-        public int ID { get; protected set; }
+        
+        public readonly RoleConfig RoleConfig;
         public RoleBase(RoleConfig config) {
+            RoleConfig = config;
         }
 
         internal void EnableRole(Player player) {
