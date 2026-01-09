@@ -41,6 +41,8 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             
             roleInstance.OnRemove();
             roleInstance.Role.DisableRole(player);
+            
+            RoleInstances.Remove(roleInstance);
         }
     }
 }
