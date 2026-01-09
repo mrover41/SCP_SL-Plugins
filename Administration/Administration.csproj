@@ -1,22 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
-		<RootNamespace>Corwarx_Project</RootNamespace>
-		<Nullable>disable</Nullable>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="ExMod.Exiled" Version="9.12.1" />
-	  <PackageReference Include="Unity" Version="5.11.10" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Corwarx Project\Corwarx_Core.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\..\..\Desktop\SCP+SL_DLL\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\Desktop\SCP+SL_DLL\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\Desktop\SCP+SL_DLL\Assembly-CSharp-firstpass.dll</HintPath>

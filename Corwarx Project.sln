@@ -5,15 +5,15 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corwarx_Core", "Corwarx Project\Corwarx_Core.csproj", "{9BF8E538-C069-456F-A721-E77B808E45F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corwarx_Roles", "Corwarx_Roles\Corwarx_Roles.csproj", "{F9A1E18D-45C4-423A-817F-73F343D453C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roles", "Roles\Roles.csproj", "{F9A1E18D-45C4-423A-817F-73F343D453C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corwarx_Gameplay", "Corwarx_Gameplay\Corwarx_Gameplay.csproj", "{F27B1A74-A2F3-4360-BB01-E6AB197ADBAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gameplay", "Gameplay\Gameplay.csproj", "{F27B1A74-A2F3-4360-BB01-E6AB197ADBAB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corwarx_Items", "Corwarx_Items\Corwarx_Items.csproj", "{B329F15B-6F7B-43BC-8864-9678DC59686C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Items", "Items\Items.csproj", "{B329F15B-6F7B-43BC-8864-9678DC59686C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corwarx_Administration", "Corwarx_Administration\Corwarx_Administration.csproj", "{DE844006-1753-4AAD-BFF0-945557F0D8D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Administration", "Administration\Administration.csproj", "{DE844006-1753-4AAD-BFF0-945557F0D8D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corwarx_UI", "Corwarx_UI\Corwarx_UI.csproj", "{FDE351B7-8C9D-4810-9340-9D961C2F3618}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{FDE351B7-8C9D-4810-9340-9D961C2F3618}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
