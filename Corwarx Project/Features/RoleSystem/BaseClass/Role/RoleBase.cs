@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Corwarx_Project.Features.RoleSystem.Containers;
 using Exiled.API.Features;
 
-namespace Corwarx_Project.Features.RoleSystem.BaseClass {
+namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
     public abstract class RoleBase {
         protected static List<Player> Players = new List<Player>();
         

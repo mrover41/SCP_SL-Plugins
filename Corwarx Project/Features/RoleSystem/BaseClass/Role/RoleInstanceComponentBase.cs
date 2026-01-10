@@ -1,6 +1,6 @@
 using Exiled.API.Features;
 
-namespace Corwarx_Project.Features.RoleSystem.BaseClass {
+namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
     public abstract class RoleInstanceComponentBase {
         public RoleBase Role { get; private set; }
 

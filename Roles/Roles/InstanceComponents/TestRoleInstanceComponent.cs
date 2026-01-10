@@ -1,4 +1,5 @@
 using Corwarx_Project.Features.RoleSystem.BaseClass;
+using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
 using Exiled.API.Features;
 using UnityEngine;
 

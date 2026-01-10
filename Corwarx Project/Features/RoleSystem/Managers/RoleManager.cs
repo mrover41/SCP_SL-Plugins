@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Corwarx_Project.Features.RoleSystem.Attributies;
 using Corwarx_Project.Features.RoleSystem.BaseClass;
+using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
 using Exiled.API.Features;
 
 namespace Corwarx_Project.Features.RoleSystem.Managers {
@@ -38,7 +39,7 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             for (;;) {
                 RoleInstanceComponentBase roleInstance = RoleInstances.Find(x => x.Player == player);
                 if (roleInstance == null)
-                    continue;
+                    return;
             
                 roleInstance.OnRemove();
                 roleInstance.Role.DisableRole(player);
