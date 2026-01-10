@@ -1,4 +1,5 @@
 ﻿using Corwarx_Project.Features.RoleSystem.BaseClass;
+using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
 
 namespace Corwarx_Project.Events.Args.Roles {
     public class SpawningRoleEventArg {
