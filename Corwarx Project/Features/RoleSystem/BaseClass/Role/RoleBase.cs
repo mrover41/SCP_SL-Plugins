@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
 using Corwarx_Project.Features.RoleSystem.Containers;
 using Exiled.API.Features;
 
@@ -7,11 +8,13 @@ namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
         protected static List<Player> Players = new List<Player>();
         
         public readonly RoleConfig RoleConfig;
+        public readonly List<SpawnConditionBase> SpawnConditions = new List<SpawnConditionBase>();
         public RoleBase(RoleConfig config) {
             RoleConfig = config;
         }
 
         internal void EnableRole(Player player) {
+            player.Role.Set(RoleConfig.RoleTypeId);
             Players.Add(player);
             OnAdd(player);
         }
