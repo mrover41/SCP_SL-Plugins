@@ -19,7 +19,7 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             }
         }
 
-        public static void AddRole(Player player, int id) {
+        public static void AddRole(this Player player, int id) {
             RoleBase role = Roles.Find(x => x.RoleConfig.ID == id);
             if (role == null)
                 return;
@@ -34,15 +34,17 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             RoleInstances.Add(roleInstance);
         }
         
-        public static void RemoveRole(Player player) {
-            RoleInstanceComponentBase roleInstance = RoleInstances.Find(x => x.Player == player);
-            if (roleInstance == null)
-                return;
+        public static void RemoveRole(this Player player) {
+            for (;;) {
+                RoleInstanceComponentBase roleInstance = RoleInstances.Find(x => x.Player == player);
+                if (roleInstance == null)
+                    continue;
             
-            roleInstance.OnRemove();
-            roleInstance.Role.DisableRole(player);
+                roleInstance.OnRemove();
+                roleInstance.Role.DisableRole(player);
             
-            RoleInstances.Remove(roleInstance);
+                RoleInstances.Remove(roleInstance);
+            }
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Corwarx_Roles.Roles {
         public TestRole() : base(Loader.Instance.Config.TestRoleConfig) { }
 
         protected override void OnAdd(Player player) {
-            Log.Info("I`M ADD");
             player.EnableEffect(EffectType.SinkHole);
             base.OnAdd(player);
         }
