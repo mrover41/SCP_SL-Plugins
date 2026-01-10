@@ -9,7 +9,7 @@ namespace Corwarx_Project.Features.RoleSystem.BaseClass.Spawn {
 
         }
         
-        public abstract bool CanSpawn(Player player, int roleID, SpawnReason reason, SpawnableFaction faction);
+        public abstract bool CanSpawn(Player player, SpawnReason reason, PlayerRoles.Faction faction);
 
         public virtual void Spawn() {
             

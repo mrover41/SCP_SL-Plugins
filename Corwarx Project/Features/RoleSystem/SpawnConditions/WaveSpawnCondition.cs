@@ -4,13 +4,13 @@ using Exiled.API.Features;
 
 namespace Corwarx_Project.Features.RoleSystem.SpawnConditions {
     public class WaveSpawnCondition : SpawnConditionBase {
-        private SpawnableFaction _fraction = SpawnableFaction.None;
+        private readonly PlayerRoles.Faction _fraction;
         
-        public WaveSpawnCondition(SpawnableFaction frac) {
+        public WaveSpawnCondition(PlayerRoles.Faction frac) {
             _fraction = frac;
         }
         
-        public override bool CanSpawn(Player player, int roleID, SpawnReason reason, SpawnableFaction faction) {
+        public override bool CanSpawn(Player player, SpawnReason reason, PlayerRoles.Faction faction) {
             return _fraction == faction;   
         }
     }

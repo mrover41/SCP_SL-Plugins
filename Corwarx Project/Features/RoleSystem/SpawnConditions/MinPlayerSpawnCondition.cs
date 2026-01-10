@@ -10,7 +10,7 @@ namespace Corwarx_Project.Features.RoleSystem.SpawnConditions {
             _minCount = minCount;
         }
         
-        public override bool CanSpawn(Player player, int roleID, SpawnReason reason, SpawnableFaction faction) {
+        public override bool CanSpawn(Player player, SpawnReason reason, PlayerRoles.Faction faction) {
             return Player.List.Count > _minCount;
         }
     }

@@ -11,7 +11,8 @@ namespace Corwarx_Roles {
             ID = 5,
             Name = "TestRole",
             Description = "Test Role",
-            Team = Team.ClassD
+            Team = Team.ClassD,
+            RoleTypeId = RoleTypeId.ClassD
         };
     }
 }

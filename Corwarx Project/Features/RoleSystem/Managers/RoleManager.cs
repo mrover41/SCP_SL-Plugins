@@ -9,8 +9,8 @@ using Exiled.API.Features;
 
 namespace Corwarx_Project.Features.RoleSystem.Managers {
     public static class RoleManager {
-        public static List<RoleBase> Roles = new List<RoleBase>();
-        public static List<RoleInstanceComponentBase> RoleInstances { get; private set; } = new List<RoleInstanceComponentBase>();
+        internal static List<RoleBase> Roles { get; private set; } = new List<RoleBase>();
+        private static List<RoleInstanceComponentBase> RoleInstances = new List<RoleInstanceComponentBase>();
         
         public static void RegisterAllRoles(Assembly asm) {
             foreach (Type type in asm.GetTypes().Where(t => t.GetCustomAttribute<LoadRoleAttribute>() != null)) {
@@ -22,6 +22,20 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
 
         public static void AddRole(this Player player, int id) {
             RoleBase role = Roles.Find(x => x.RoleConfig.ID == id);
+            if (role == null)
+                return;
+            
+            Type type = role.GetType().GetCustomAttribute<LoadRoleAttribute>().ComponetType;
+            
+            RoleInstanceComponentBase roleInstance = (RoleInstanceComponentBase)Activator.CreateInstance(type, role, player);
+            
+            role.EnableRole(player);
+            roleInstance.OnAdd();
+            
+            RoleInstances.Add(roleInstance);
+        }
+        
+        public static void AddRole(this Player player, RoleBase role) {
             if (role == null)
                 return;
             
