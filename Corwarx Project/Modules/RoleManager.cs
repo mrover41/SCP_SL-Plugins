@@ -28,12 +28,13 @@ namespace Corwarx_Project.Modules {
         }
 
         private void OmStartRound() {
-           Player player = Player.List.Where(x => x.Role == RoleTypeId.ClassD).GetRandomValue();
-           if (player == null) return;
+            foreach (Player player in  Player.List) {
+                if (player == null) return;
            
-           Faction faction = player.Role.Team.GetFaction();
+                Faction faction = player.Role.Team.GetFaction();
            
-           SpawnManager.SpawnPlayer(player, SpawnReason.RoundStart, faction);
+                SpawnManager.SpawnPlayer(player, SpawnReason.RoundStart, faction);
+            }
         }
     }
 }
