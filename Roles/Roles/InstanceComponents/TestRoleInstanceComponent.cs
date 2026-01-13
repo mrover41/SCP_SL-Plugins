@@ -1,6 +1,7 @@
 using Corwarx_Project.Features.RoleSystem.BaseClass;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
 using Exiled.API.Features;
+using Exiled.Events.EventArgs.Player;
 using UnityEngine;
 
 namespace Corwarx_Roles.Roles.InstanceComponents {
@@ -9,13 +10,19 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
         }
 
         public override void OnAdd() {
-            Player.Scale = Vector3.one * 0.1f;
+            Exiled.Events.Handlers.Player.Hurt += OnHurt;
             base.OnAdd();
         }
 
         public override void OnRemove() {
-            Player.Scale = Vector3.one;
+            Exiled.Events.Handlers.Player.Hurt -= OnHurt;
             base.OnRemove();
+        }
+
+        private void OnHurt(HurtEventArgs ev) {
+            if (ev.Player != Player) return;
+
+            ev.DamageHandler.Damage *= 0.7f;
         }
     }
 }

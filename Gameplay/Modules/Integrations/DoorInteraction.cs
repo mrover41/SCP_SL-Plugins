@@ -7,7 +7,7 @@ using Interactables.Interobjects.DoorUtils;
 using UnityEngine;
 
 namespace Gameplay.Modules.Integrations {
-    [LoadModule]
+    //[LoadModule]
     internal class DoorInteraction : ModuleBase {
         public override string Name => "Door Interaction";
 
