@@ -12,8 +12,8 @@ namespace Corwarx_Roles.Roles {
     [LoadRole(typeof(TestRoleInstanceComponent))]
     public class TestRole : RoleBase {
         public TestRole() : base(Loader.Instance.Config.TestRoleConfig) {
-            SpawnConditions.Add(new RoundSpawnCondition());
-            SpawnConditions.Add(new LimitRoundSpawnCondition(2));
+            SpawnConditions.Add(new RoundSpawnCondition(Faction.FoundationEnemy));
+            SpawnConditions.Add(new LimitRoundSpawnCondition(1));
         }
 
         protected override void OnAdd(Player player) {
