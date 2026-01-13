@@ -12,24 +12,23 @@ using Respawning.Waves;
 
 namespace Corwarx_Project.Patchs {
     [HarmonyPatch(typeof(WaveManager), nameof(WaveManager.Spawn))]
-    public class WaveSpawnPatch {
-        [HarmonyPostfix]
-        public static void Postfix(SpawnableWaveBase wave) {
-            SpawnManager.SpawnPlayers(Player.List.Where(x => x.Role == RoleTypeId.Spectator).ToList(), SpawnReason.Respawn, wave.TargetFaction);
-        }
-    }
-
-    [HarmonyPatch(typeof(HumanSpawner), nameof(HumanSpawner.AssignHumanRoleToRandomPlayer))]
-    public static class RoundSpawnPatch {
+    public static class WaveSpawnPatch {
         [HarmonyPrefix]
-        public static bool Prefix(RoleTypeId role) {
-            List<ReferenceHub> referenceHubs = HumanSpawner.Candidates;
-
-            referenceHubs.TryGetRandomItem(out ReferenceHub random);
-            
-            if (SpawnManager.SpawnPlayer(Player.Get(random), SpawnReason.RoundStart, role.GetFaction()))
-                return false;
+        public static bool Prefix(SpawnableWaveBase wave) {
+            SpawnManager.SpawnPlayers(Player.List.Where(x => x.Role == RoleTypeId.Spectator).ToList(), SpawnReason.Respawn, wave.TargetFaction);
             return true;
         }
     }
+
+    /*[HarmonyPatch(typeof(HumanSpawner), nameof(HumanSpawner.AssignHumanRoleToRandomPlayer))]
+    public static class RoundSpawnPatch {
+        [HarmonyPostfix]
+        public static void Postfix(RoleTypeId role) {
+            List<ReferenceHub> referenceHubs = HumanSpawner.Candidates;
+
+            referenceHubs.TryGetRandomItem(out ReferenceHub random);
+
+            SpawnManager.SpawnPlayer(Player.Get(random), SpawnReason.RoundStart, role.GetFaction());
+        }
+    }*/
 }
