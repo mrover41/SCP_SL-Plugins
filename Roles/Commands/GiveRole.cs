@@ -15,7 +15,10 @@ namespace Corwarx_Roles.Commands {
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response) {
             Player executer = Player.Get(sender);
-            
+
+            if (arguments.Count < 1) {
+                executer.RemoveRole();
+            }
             executer.AddRole(int.Parse(arguments.First()));
 
             response = "Done";

@@ -14,13 +14,12 @@ namespace Corwarx_Project.Patchs {
     [HarmonyPatch(typeof(WaveManager), nameof(WaveManager.Spawn))]
     public class WaveSpawnPatch {
         [HarmonyPostfix]
-        public static bool Postfix(SpawnableWaveBase wave) {
+        public static void Postfix(SpawnableWaveBase wave) {
             SpawnManager.SpawnPlayers(Player.List.Where(x => x.Role == RoleTypeId.Spectator).ToList(), SpawnReason.Respawn, wave.TargetFaction);
-            return true;
         }
     }
 
-    /*[HarmonyPatch(typeof(HumanSpawner), nameof(HumanSpawner.AssignHumanRoleToRandomPlayer))]
+    [HarmonyPatch(typeof(HumanSpawner), nameof(HumanSpawner.AssignHumanRoleToRandomPlayer))]
     public static class RoundSpawnPatch {
         [HarmonyPrefix]
         public static bool Prefix(RoleTypeId role) {
@@ -32,5 +31,5 @@ namespace Corwarx_Project.Patchs {
                 return false;
             return true;
         }
-    }*/
+    }
 }

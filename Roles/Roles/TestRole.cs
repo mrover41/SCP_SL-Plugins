@@ -6,6 +6,7 @@ using Corwarx_Roles.Roles.InstanceComponents;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using PlayerRoles;
+using UnityEngine;
 
 namespace Corwarx_Roles.Roles {
     [LoadRole(typeof(TestRoleInstanceComponent))]
@@ -13,12 +14,16 @@ namespace Corwarx_Roles.Roles {
         public TestRole() : base(Loader.Instance.Config.TestRoleConfig) {
             SpawnConditions.Add(new RoundSpawnCondition());
             SpawnConditions.Add(new LimitRoundSpawnCondition(2));
-            //SpawnConditions.Add(new ChanceSpawnCondition(101));
         }
 
         protected override void OnAdd(Player player) {
-            player.EnableEffect(EffectType.SinkHole);
+            player.Scale = Vector3.one * 0.5f;
             base.OnAdd(player);
+        }
+
+        protected override void OnRemove(Player player) {
+            player.Scale = Vector3.one;
+            base.OnRemove(player);
         }
     }
 }

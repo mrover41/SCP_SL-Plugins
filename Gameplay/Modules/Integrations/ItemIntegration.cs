@@ -7,7 +7,7 @@ using InventorySystem.Items.Pickups;
 using UnityEngine;
 
 namespace Gameplay.Modules.Integrations {
-    [LoadModule]
+    //[LoadModule]
     internal class ItemIntegration : ModuleBase {
         public override string Name => "Item Integration";
 
