@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Exiled.CustomItems.API.Features;
 using PlayerRoles;
 
 namespace Corwarx_Project.Features.RoleSystem.Containers {
@@ -7,5 +9,6 @@ namespace Corwarx_Project.Features.RoleSystem.Containers {
         public string Description { get; set; }
         public int ID { get; set; }
         public RoleTypeId RoleTypeId { get; set; }
+        public List<ItemType> Items { get; set; }
     }
 }
