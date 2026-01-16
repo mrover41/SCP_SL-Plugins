@@ -16,6 +16,10 @@ namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
         internal void EnableRole(Player player) {
             player.Role.Set(RoleConfig.RoleTypeId);
             Players.Add(player);
+            player.ClearInventory();
+            foreach (ItemType type in RoleConfig.Items) {
+                player.AddItem(type);
+            }
             OnAdd(player);
         }
 
