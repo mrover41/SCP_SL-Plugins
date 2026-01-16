@@ -1,4 +1,7 @@
-﻿using Corwarx_Project.Features.RoleSystem.Containers;
+﻿using System;
+using System.Collections.Generic;
+using Corwarx_Project.Features.RoleSystem.Containers;
+using Items.Items;
 using Exiled.API.Interfaces;
 using PlayerRoles;
 
@@ -13,6 +16,20 @@ namespace Corwarx_Roles {
             Description = "Test Role",
             Team = Team.ClassD,
             RoleTypeId = RoleTypeId.ClassD
+        };
+
+        public RoleConfig MedicRoleConfig { get; set; } = new RoleConfig() {
+            ID = 6,
+            Name = "MedicRole",
+            Description = "Medic",
+            Items = new List<ItemType>() {
+                ItemType.Medkit,
+                ItemType.Medkit,
+                ItemType.Medkit,
+            },
+            CustomItems = new List<Type>() {
+                typeof(Trangulizer),
+            }
         };
     }
 }
