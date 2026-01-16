@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
 using Corwarx_Project.Features.RoleSystem.Containers;
 using Exiled.API.Features;
+using Exiled.CustomItems.API.Features;
 
 namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
     public abstract class RoleBase {
@@ -17,8 +19,15 @@ namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
             player.Role.Set(RoleConfig.RoleTypeId);
             Players.Add(player);
             player.ClearInventory();
+            
             foreach (ItemType type in RoleConfig.Items) {
                 player.AddItem(type);
+            }
+
+            foreach (Type customItem in RoleConfig.CustomItems) {
+                foreach (CustomItem item in CustomItem.Get(customItem)) {
+                    item.Give(player);
+                }
             }
             OnAdd(player);
         }

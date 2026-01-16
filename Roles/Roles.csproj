@@ -9,6 +9,7 @@
 
 	<ItemGroup>
     <ProjectReference Include="..\Corwarx Project\Corwarx_Core.csproj" />
+    <ProjectReference Include="..\Items\Items.csproj" />
   </ItemGroup>
 
   <ItemGroup>
