@@ -1,4 +1,5 @@
-﻿using Exiled.API.Enums;
+﻿using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
@@ -70,22 +71,22 @@ public class ItemD : CustomWeapon {
         }
     }
 
-    public override SpawnProperties SpawnProperties { get; set; } = null;
+    //public override SpawnProperties SpawnProperties { get; set; } = null;
 
-    /*public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties() {
+    public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties() {
         Limit = 1,
         DynamicSpawnPoints = new List<DynamicSpawnPoint> {
             new DynamicSpawnPoint()
             {
-                Location = SpawnLocationType.InsideHidChamber,
+                Location = SpawnLocationType.Inside914,
                 Chance = 100
             }
         },  
         StaticSpawnPoints = new List<StaticSpawnPoint> {
             new StaticSpawnPoint() {
                 Chance = 100,
-                Position = new UnityEngine.Vector3(0f, 0f, 0f), Name = "Дублiкатор"
+                Position = new UnityEngine.Vector3(0f, 0f, 0f), Name = "Дубликатор"
             }
         }
-    };*/
+    };
 }

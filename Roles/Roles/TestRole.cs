@@ -9,7 +9,7 @@ using PlayerRoles;
 using UnityEngine;
 
 namespace Corwarx_Roles.Roles {
-    [LoadRole(typeof(TestRoleInstanceComponent))]
+    //[LoadRole(typeof(TestRoleInstanceComponent))]
     public class TestRole : RoleBase {
         public TestRole() : base(Loader.Instance.Config.TestRoleConfig) {
             SpawnConditions.Add(new RoundSpawnCondition(Faction.FoundationEnemy));

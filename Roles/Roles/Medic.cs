@@ -1,10 +1,7 @@
 using Corwarx_Project.Features.RoleSystem.Attributies;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
-using Corwarx_Project.Features.RoleSystem.Containers;
 using Corwarx_Project.Features.RoleSystem.SpawnConditions;
 using Corwarx_Roles.Roles.InstanceComponents;
-using Exiled.API.Features;
-using Exiled.CustomItems.API.Features;
 using PlayerRoles;
 
 namespace Corwarx_Roles.Roles {
