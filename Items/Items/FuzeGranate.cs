@@ -40,6 +40,8 @@ namespace Items.Items {
                 ev.Player.Broadcast(4, "<b><color=#FCF7D9>Ви підібрали</color> <color=#A9BCD4>Димову гранату</color></b>");
             }
         }
+        
+        //Кто эту х.ню написал, потом исправлю, наверное
         void Spawner(SpawnedEventArgs ev) { 
             if (ev.Player.Role.Type == RoleTypeId.NtfSergeant) {
                 CustomItem.TryGive(ev.Player, 140, false);
