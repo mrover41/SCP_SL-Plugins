@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using Instinct.Core.Features.ModuleSystem.Attributies;
+using Instinct.Core.Features.ModuleSystem.BaseClass;
+using InventorySystem.Items.Pickups;
+using LabApi.Events.Arguments.PlayerEvents;
+using UnityEngine;
 
 namespace Instinct.Gameplay.Modules.Integrations {
     //[LoadModule]
@@ -6,25 +10,25 @@ namespace Instinct.Gameplay.Modules.Integrations {
         public override string Name => "Item Integration";
 
         public override void OnEnable() {
-            LabApi.Events.Handlers.Player.Shot += Interact;
+            LabApi.Events.Handlers.PlayerEvents.ShotWeapon += Interact;
             base.OnEnable();
         }
 
         public override void OnDisable() {
-            LabApi.Events.Handlers.Player.Shot += Interact;
+            LabApi.Events.Handlers.PlayerEvents.ShotWeapon += Interact;
             base.OnDisable();
         }
 
-        private void Interact(ShotEventArgs ev) {
-            if (Physics.Linecast(ev.Player.CameraTransform.position, ev.RaycastHit.point, out RaycastHit hitInfo)) {
+        private void Interact(PlayerShotWeaponEventArgs ev) {
+            if (Physics.Linecast(ev.Player.Camera.position, ev.Player.Camera.position + ev.Player.Camera.forward * 10, out RaycastHit hitInfo)) {
                 if (hitInfo.transform.TryGetComponent(out ItemPickupBase itemPickupBase)) {
-                    Pickup pickup = Pickup.Get(hitInfo.transform.gameObject);
-                    Vector3 d = pickup.Position - ev.Player.CameraTransform.position;
+                    Pickup pickup = Pickup.Get(itemPickupBase);
+                    Vector3 d = pickup.Position - ev.Player.Camera.position;
                     d.Normalize();
                     switch (pickup.Type) {
                         case ItemType.GrenadeFlash:
                             pickup.Destroy();
-                            Map.Explode(pickup.Position, LabApi.API.Enums.ProjectileType.Flashbang, pickup.PreviousOwner);
+                            Map./*i dont know what*/(pickup.Position, LabApi.API.Enums.ProjectileType.Flashbang, pickup.PreviousOwner);
                             break;
                         case ItemType.GrenadeHE:
                             pickup.Destroy();

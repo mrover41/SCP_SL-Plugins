@@ -45,6 +45,9 @@
     <Reference Include="Mirror.Components">
       <HintPath>..\libs\Mirror.Components.dll</HintPath>
     </Reference>
+    <Reference Include="Mirror">
+      <HintPath>..\libs\Mirror.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\libs\Mono.Security.dll</HintPath>
     </Reference>
