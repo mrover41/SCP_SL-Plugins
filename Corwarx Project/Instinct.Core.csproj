@@ -1,0 +1,85 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>Instinct.Core</RootNamespace>
+		<LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TargetFramework>net48</TargetFramework>
+        <Authors>wexels.dev everyofflineuser Mr_Over41</Authors>
+        <Configurations>Release;Debug</Configurations>
+        <Platforms>x64</Platforms>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+        <FileVersion>0.0.0.0</FileVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="0Harmony">
+	    <HintPath>..\libs\0Harmony.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Assembly-CSharp-firstpass">
+	    <HintPath>..\libs\Assembly-CSharp-firstpass.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>..\libs\Assembly-CSharp.dll</HintPath>
+	  </Reference>
+	  <Reference Include="CommandSystem.Core">
+	    <HintPath>..\libs\CommandSystem.Core.dll</HintPath>
+	  </Reference>
+	  <Reference Include="LabApi">
+	    <HintPath>..\libs\LabApi.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+	    <HintPath>..\libs\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Mirror">
+	    <HintPath>..\libs\Mirror.dll</HintPath>
+	  </Reference>
+	  <Reference Include="netstandard">
+	    <HintPath>..\libs\netstandard.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NorthwoodLib">
+	    <HintPath>..\libs\NorthwoodLib.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.Buffers">
+	    <HintPath>..\libs\System.Buffers.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.Collections.Immutable">
+	    <HintPath>..\libs\System.Collections.Immutable.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.IO.Compression">
+	    <HintPath>..\libs\System.IO.Compression.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.IO.Pipelines">
+	    <HintPath>..\libs\System.IO.Pipelines.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.Memory">
+	    <HintPath>..\libs\System.Memory.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.Net.Http">
+	    <HintPath>..\libs\System.Net.Http.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.Numerics.Vectors">
+	    <HintPath>..\libs\System.Numerics.Vectors.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.Runtime">
+	    <HintPath>..\libs\System.Runtime.dll</HintPath>
+	  </Reference>
+	  <Reference Include="System.Threading.Tasks.Extensions">
+	    <HintPath>..\libs\System.Threading.Tasks.Extensions.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine">
+	    <HintPath>..\libs\UnityEngine.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.CoreModule">
+	    <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.PhysicsModule">
+	    <HintPath>..\libs\UnityEngine.PhysicsModule.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>

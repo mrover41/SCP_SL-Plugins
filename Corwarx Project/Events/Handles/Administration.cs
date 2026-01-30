@@ -1,7 +1,6 @@
-﻿using Corwarx_Project.Events.Args.Administration;
-using System;
+﻿using Instinct.Core.Events.Args.Administration;
 
-namespace Corwarx_Project.Events.Handles {
+namespace Instinct.Core.Events.Handles {
     public static class Administration {
         public static event Action<AddingWarnEventArg> AddingWarnEvent;
         public static event Action<AddWarnEventArg> AddWarnEvent;

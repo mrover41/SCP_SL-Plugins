@@ -1,91 +1,93 @@
-﻿using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
-using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using LabApi.API.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
+using Instinct.Core.Features.ModuleSystem.Attributies;
+using Instinct.Core.Features.ModuleSystem.BaseClass;
 
-namespace Corwarx_Project.Features.ModuleSystem.Manager {
+namespace Instinct.Core.Features.ModuleSystem.Manager {
     public static class ModuleManager {
-        public static List<ModuleBase> Modules { get; private set; } = new List<ModuleBase>();
+        public static List<ModuleBase> Modules { get; private set; } = [];
 
         [Obsolete("Pleas use attributies")]
-        internal static void RegisterModule(ModuleBase module, bool isEnabled = true) {
+        private static void RegisterModule(ModuleBase? module, bool isEnabled = true) {
             if (module != null && !Modules.Contains(module)) {
                 Modules.Add(module);
+                
                 if (module.Id == -1)
                     module.Id = Modules.Count + 1;
-                Corwarx_Project.Events.Handles.Module.OnRegModuleEvent(new Events.Args.Modules.RegModuleEventArg(module));
-                if (isEnabled) {
-                    if (!Corwarx_Project.Events.Handles.Module.OnEnableModuleEvent(new Events.Args.Modules.EnableModuleEventArg(module)).IsAllowed)
-                        return;
-                    module.OnEnable();
-                    Corwarx_Project.Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
-                }
-            } else {
-                Logger.Error($"Module {module.Name} with ID {module.Id} is null or already registered.");
+                
+                Events.Handles.Module.OnRegModuleEvent(new Events.Args.Modules.RegModuleEventArg(module));
+                
+                if (!isEnabled) return;
+                
+                if (!Events.Handles.Module.OnEnableModuleEvent(new Events.Args.Modules.EnableModuleEventArg(module)).IsAllowed)
+                    return;
+                
+                module.OnEnable();
+                Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
+            } 
+            else {
+                Logger.Error($"Module {module?.Name} with ID {module?.Id} is null or already registered.");
             }
         }
 
-        public static void RegisterModules(Assembly asm, bool enable_modules = true) {
+        public static void RegisterModules(Assembly asm, bool enableModules = true) {
             foreach (Type type in asm.GetTypes()) {
-                if (type.GetCustomAttribute<LoadModuleAttribute>() != null) {
-                    if (!typeof(ModuleBase).IsAssignableFrom(type))
-                        throw new Exception($"Error in class: {type.FullName}\n Can`t load module");
-                    ModuleBase instance = (ModuleBase)Activator.CreateInstance(type);
-                    RegisterModule(instance, false);
-                    if (enable_modules)
-                        instance.OnEnable();
-                }
+                if (type.GetCustomAttribute<LoadModuleAttribute>() == null) continue;
+                
+                if (!typeof(ModuleBase).IsAssignableFrom(type))
+                    throw new Exception($"Error in class: {type.FullName}\n Can`t load module");
+                
+                ModuleBase instance = (ModuleBase)Activator.CreateInstance(type);
+                RegisterModule(instance, false);
+                
+                if (enableModules)
+                    instance.OnEnable();
             }
 
             Events.Handles.Module.OnRegisterAssembly();
         }
 
         internal static void EnableAllModules() {
-            foreach (ModuleBase module in Modules) {
-                if (module.IsEnabled)
-                    continue;
-
-                if (!Corwarx_Project.Events.Handles.Module.OnEnableModuleEvent(new Events.Args.Modules.EnableModuleEventArg(module)).IsAllowed)
-                    continue;
-
+            foreach (ModuleBase module in Modules.Where(module => !module.IsEnabled).Where(module => Events.Handles.Module.OnEnableModuleEvent(new Events.Args.Modules.EnableModuleEventArg(module)).IsAllowed)) {
                 module.OnEnable();
                 module.IsEnabled = true;
 
-                Corwarx_Project.Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
+                Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
             }
         }
 
         public static void EnableModule(uint id) {
-            ModuleBase module = Modules.FirstOrDefault(m => m.Id == id);
-
-            if (module.IsEnabled)
-                return;
+            ModuleBase? module = Modules.FirstOrDefault(m => m.Id == id);
 
             if (module != null) {
-                if (!Corwarx_Project.Events.Handles.Module.OnEnableModuleEvent(new Events.Args.Modules.EnableModuleEventArg(module)).IsAllowed)
+                if (module.IsEnabled)
                     return;
+                
+                if (!Events.Handles.Module.OnEnableModuleEvent(new Events.Args.Modules.EnableModuleEventArg(module)).IsAllowed)
+                    return;
+                
                 module.OnEnable();
                 module.IsEnabled = true;
-                Corwarx_Project.Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
-            } else {
+                
+                Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
+            } 
+            else {
                 Logger.Error($"Module with ID {id} not found.");
             }
         }
 
         public static void DisableModule(uint id) {
-            ModuleBase module = Modules.FirstOrDefault(m => m.Id == id);
-
-            if (!module.IsEnabled)
-                return;
+            ModuleBase? module = Modules.FirstOrDefault(m => m.Id == id);
 
             if (module != null) {
+                if (!module.IsEnabled)
+                    return;
+                
                 module.OnDisable();
                 module.IsEnabled = false;
-                Corwarx_Project.Events.Handles.Module.OnDisableModuleEventArg(new Events.Args.Modules.DisableModuleEventArg(module));
-            } else {
+                
+                Events.Handles.Module.OnDisableModuleEventArg(new Events.Args.Modules.DisableModuleEventArg(module));
+            } 
+            else {
                 Logger.Error($"Module with ID {id} not found.");
             }
         }
@@ -97,26 +99,29 @@ namespace Corwarx_Project.Features.ModuleSystem.Manager {
 
                 module.OnDisable();
                 module.IsEnabled = false;
-                Corwarx_Project.Events.Handles.Module.OnDisableModuleEventArg(new Events.Args.Modules.DisableModuleEventArg(module));
+                Events.Handles.Module.OnDisableModuleEventArg(new Events.Args.Modules.DisableModuleEventArg(module));
             }
         }
 
-        public static void UnregisterModule(ModuleBase module) {
+        public static void UnregisterModule(ModuleBase? module) {
             if (module != null && Modules.Contains(module)) {
                 Modules.Remove(module);
-                Corwarx_Project.Events.Handles.Module.OnUnregisterModuleEventArg(new Events.Args.Modules.UnregisterModuleEventArg(module));
-            } else {
+                Events.Handles.Module.OnUnregisterModuleEventArg(new Events.Args.Modules.UnregisterModuleEventArg(module));
+            } 
+            else {
                 Logger.Error($"Module {module.Name} with ID {module.Id} is null or not registered.");
             }
         }
 
-        public static void UnregisterModule(uint ID) {
-            ModuleBase module = Modules.FirstOrDefault(m => m.Id == ID);
+        public static void UnregisterModule(uint id) {
+            ModuleBase? module = Modules.FirstOrDefault(m => m.Id == id);
+            
             if (module != null && Modules.Contains(module)) {
                 Modules.Remove(module);
-                Corwarx_Project.Events.Handles.Module.OnUnregisterModuleEventArg(new Events.Args.Modules.UnregisterModuleEventArg(module));
-            } else {
-                Logger.Error($"Module {module.Name} with ID {module.Id} is null or not registered.");
+                Events.Handles.Module.OnUnregisterModuleEventArg(new Events.Args.Modules.UnregisterModuleEventArg(module));
+            } 
+            else {
+                Logger.Error($"Module {module?.Name} with ID {module?.Id} is null or not registered.");
             }
         }
     }

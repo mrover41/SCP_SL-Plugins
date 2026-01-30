@@ -1,21 +1,13 @@
-using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
-using LabApi.API.Enums;
-using LabApi.API.Features;
+using Instinct.Core.Features.RoleSystem.BaseClass.Spawn;
 using PlayerRoles;
 
-namespace Corwarx_Project.Features.RoleSystem.SpawnConditions {
-    public class RoundSpawnCondition : SpawnConditionBase {
-        private readonly PlayerRoles.Faction _faction;
-        private readonly bool _useFaction;
-        public RoundSpawnCondition(Faction faction, bool useFaction = true) {
-            _faction = faction;
-            _useFaction = useFaction;
-        }
-        public override bool CanSpawn(Player player, SpawnReason reason, PlayerRoles.Faction faction) {
-            if (!_useFaction)
-                return reason == SpawnReason.RoundStart;
-            else
-                return reason == SpawnReason.RoundStart &&  _faction == faction;
+namespace Instinct.Core.Features.RoleSystem.SpawnConditions {
+    public class RoundSpawnCondition(Faction faction, bool useFaction = true) : SpawnConditionBase {
+        public override bool CanSpawn(Player player, RoleChangeReason reason, Faction faction1) {
+            if (!useFaction)
+                return reason == RoleChangeReason.RoundStart;
+            
+            return reason == RoleChangeReason.RoundStart && faction == faction1;
         }
     }
 }

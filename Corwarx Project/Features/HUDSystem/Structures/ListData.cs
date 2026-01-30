@@ -1,7 +1,6 @@
-﻿using Corwarx_Project.Features.HUDSystem.Enums;
-using System.Collections.Generic;
+﻿using Instinct.Core.Features.HUDSystem.Enums;
 
-namespace Corwarx_Project.Features.HUDSystem.Structures {
+namespace Instinct.Core.Features.HUDSystem.Structures {
     public struct ListData {
         public List<string> Hint;
         public bool AutoStile;
@@ -10,12 +9,12 @@ namespace Corwarx_Project.Features.HUDSystem.Structures {
         public string Hex;
         public bool OverrideColor;
         public ListData(List<string> hint, bool autoStile = true, bool overrideColor = true, Align align = Align.right, int size = 15, string hex = "")  {
-            Hint = hint;
-            AutoStile = autoStile;
+            this.Hint = hint;
+            this.AutoStile = autoStile;
             this.Align = align;
-            Size = size;
-            Hex = hex;
-            OverrideColor = overrideColor;
+            this.Size = size;
+            this.Hex = hex;
+            this.OverrideColor = overrideColor;
         }
     }
 }

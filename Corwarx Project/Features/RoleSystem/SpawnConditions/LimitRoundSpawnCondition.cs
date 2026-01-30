@@ -1,28 +1,28 @@
-using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
-using LabApi.API.Enums;
-using LabApi.API.Features;
+using Instinct.Core.Features.RoleSystem.BaseClass.Spawn;
+using PlayerRoles;
 
-namespace Corwarx_Project.Features.RoleSystem.SpawnConditions {
+namespace Instinct.Core.Features.RoleSystem.SpawnConditions {
     public class LimitRoundSpawnCondition : SpawnConditionBase {
         private readonly int _maxRounds;
         
-        private int _currentRound = 0;
+        private int _currentRound;
         
         public LimitRoundSpawnCondition(int max) {
-            LabApi.Events.Handlers.Server.RestartingRound += OnRestartRound;
-            _maxRounds = max;
+            LabApi.Events.Handlers.ServerEvents.RoundRestarted += this.OnRestartRound;
+            this._maxRounds = max;
         }
-        public override bool CanSpawn(Player player, SpawnReason reason, PlayerRoles.Faction faction) {
-            return _currentRound < _maxRounds;
+        
+        public override bool CanSpawn(Player player, RoleChangeReason reason, Faction faction) {
+            return this._currentRound < this._maxRounds;
         }
 
         public override void Spawn() {
-            _currentRound++;
+            this._currentRound++;
             base.Spawn();
         }
 
         private void OnRestartRound() {
-            _currentRound = 0;
+            this._currentRound = 0;
         }
     }
 }

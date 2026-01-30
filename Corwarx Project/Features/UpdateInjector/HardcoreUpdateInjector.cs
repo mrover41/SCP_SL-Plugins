@@ -1,29 +1,27 @@
-﻿using Corwarx_Project.Features.UpdateInjector.Attributies;
-using LabApi.API.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
+using Instinct.Core.Features.UpdateInjector.Attributies;
 using UnityEngine;
 
-public class Updater : MonoBehaviour {
-    public static Updater Instance;
+namespace Instinct.Core.Features.UpdateInjector;
 
-    private static readonly List<Action> _updates = new List<Action>();
+public class Updater : MonoBehaviour {
+    public static Updater? Instance;
+
+    private static readonly List<Action> Updates = [];
 
     public void Init() {
-        Logger.Debug("Updater inicialized");
+        Logger.Debug("Updater initialized");
         foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
             Logger.Debug($"Processing assembly: {assembly.FullName}");
             foreach (Type type in assembly.GetTypes()) {
                 foreach (MethodInfo method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).Where(x => x.GetCustomAttribute<UpdateAttribute>() != null)) {
                     Action action = (Action)Delegate.CreateDelegate(typeof(Action), method);
-                    _updates.Add(action);
-                    Logger.Send($"[Corwarx_Core] Register Method: {action.Method.Name}", Discord.LogLevel.Debug, ConsoleColor.Cyan);
+                    Updates.Add(action);
+                    Logger.Raw($"[Instinct.Core] Register Method: {action.Method.Name}", ConsoleColor.Cyan);
                 }
             }
         }
-        Logger.Debug($"Registered methods: {_updates.Count}");
+        Logger.Debug($"Registered methods: {Updates.Count}");
     }
 
     private void OnEnable() {
@@ -31,8 +29,8 @@ public class Updater : MonoBehaviour {
     }
 
     private void Update() {
-        for (int i = 0; i < _updates.Count; i++)
-            _updates[i]();
+        for (int i = 0; i < Updates.Count; i++)
+            Updates[i]();
     }
 
     private void OnDisable() {

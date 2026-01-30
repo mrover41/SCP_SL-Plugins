@@ -1,13 +1,12 @@
-﻿using Corwarx_Project.Features.RoleSystem.BaseClass;
-using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
+﻿using Instinct.Core.Features.RoleSystem.BaseClass.Role;
 
-namespace Corwarx_Project.Events.Args.Roles {
+namespace Instinct.Core.Events.Args.Roles {
     public class SpawningRoleEventArg {
-        public SpawningRoleEventArg(RoleBase role) {
-            Role = role;
-            IsAllowed = true;
+        public SpawningRoleEventArg(BaseCustomRole baseCustomRole) {
+            this.BaseCustomRole = baseCustomRole;
+            this.IsAllowed = true;
         }
-        public RoleBase Role { get; set; }
+        public BaseCustomRole BaseCustomRole { get; set; }
         public bool IsAllowed { get; set; } = true;
     }
 }

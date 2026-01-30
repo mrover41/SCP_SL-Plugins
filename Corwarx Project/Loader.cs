@@ -1,31 +1,25 @@
-﻿using Corwarx_Project.Features.ModuleSystem.Manager;
-using HarmonyLib;
+﻿using HarmonyLib;
 using LabApi.Features;
-using LabApi.Features.Console;
 using LabApi.Loader.Features.Plugins;
-using System;
 using System.Reflection;
-using Plugin = Corwarx_Project.Events.Handles.Plugin;
+using Instinct.Core.Features.ModuleSystem.Manager;
 
-namespace Corwarx_Project.Core {
+namespace Instinct.Core {
     public class Loader : Plugin<Config> {
-        public static Loader Instance { get; private set; }
-        public Loader() => Instance = this;
-        public override string Name => typeof(Loader).Namespace;
-
-        public override string Description => "Mega simga";
-
+        private static Harmony? _harmony;
+        
+        public override string Name => "Instinct.Core";
+        public override string Description => "хз, не придумал";
         public override string Author => "Mr_Over41 && everyofflineuser && wexels.dev";
 
-        public override System.Version Version => new Version("1.0.0");
+        public override Version Version => new("2.0.0");
+        public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
+        
+        public static Loader? Instance { get; private set; }
 
-        public override System.Version RequiredApiVersion => LabApiProperties.CurrentVersion;
-
-
-        internal static Harmony _harmony;
-        internal EventHandler EventHandler = new EventHandler();
-
-        public void OnEnabled() {
+        public override void Enable() {
+            Instance = this;
+            
             _harmony = new Harmony("com.corwarx.core");
             _harmony.PatchAll();
 
@@ -35,35 +29,26 @@ namespace Corwarx_Project.Core {
 
             //RueI.RueIMain.EnsureInit();
 
-            Logger.Info("\n Plugin CORWAX CORE is running!\n Creator: Mr_Over41\n Made for: Me :3\n oo-ee-oo");
-            Logger.Info($"Plugin {Name} started");
+            Logger.Info($"\n Plugin {this.Name} is running!\n Creator: {this.Author}");
+            Logger.Info($"Plugin {this.Name} started");
         }
 
-        public void OnDisabled() {
-            _harmony.UnpatchAll();
+        public override void Disable() {
+            _harmony?.UnpatchAll();
             ModuleManager.DisableAllModules();
             UnRegisterEvents();
-        }
 
-        private void RegisterEvents() {
+            Instance = null;
+        }
+        
+        private static void RegisterEvents() {
             EventHandler.RegisterEvents();
             LabApi.Events.Handlers.PlayerEvents.Joined += EventHandler.OnPlayerJoined;
         }
 
-        private void UnRegisterEvents() {
+        private static void UnRegisterEvents() {
             EventHandler.UnRegisterEvents();
             LabApi.Events.Handlers.PlayerEvents.Joined -= EventHandler.OnPlayerJoined;
         }
-
-        public override void Enable()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Disable()
-        {
-            throw new System.NotImplementedException();
-        }
-
     }
 }

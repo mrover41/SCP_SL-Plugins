@@ -1,11 +1,10 @@
-﻿using Corwarx_Project.Features.RoleSystem.BaseClass;
-using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
+﻿using Instinct.Core.Features.RoleSystem.BaseClass.Role;
 
-namespace Corwarx_Project.Events.Args.Roles {
+namespace Instinct.Core.Events.Args.Roles {
     public class SpawnRoleEventArg {
-        public SpawnRoleEventArg(RoleBase role) {
-            Role = role;
+        public SpawnRoleEventArg(BaseCustomRole baseCustomRole) {
+            this.BaseCustomRole = baseCustomRole;
         }
-        public RoleBase Role { get; set; }
+        public BaseCustomRole BaseCustomRole { get; set; }
     }
 }

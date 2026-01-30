@@ -1,20 +1,18 @@
-﻿using Corwarx_Project.Events.Args.Roles;
-using System;
+﻿using Instinct.Core.Events.Args.Roles;
 
-namespace Corwarx_Project.Events.Handles {
+namespace Instinct.Core.Events.Handles {
     public static class Roles {
         public static event Action<SpawningRoleEventArg> SpawningRole;
         public static event Action<SpawnRoleEventArg> SpawnRole;
         public static event Action<SpawningAllRolesEventArg> SpawningAllRoles;
-        public static event Action<SpawnAllRolesEventArg> SpawnAllRoles;
+        public static event Action SpawnAllRoles;
 
         public static SpawningAllRolesEventArg OnSpawningAllRoles(SpawningAllRolesEventArg args) {
             SpawningAllRoles?.Invoke(args);
             return args;
         }
-        public static SpawnAllRolesEventArg OnSpawnAllRoles(SpawnAllRolesEventArg args) {
-            SpawnAllRoles?.Invoke(args);
-            return args;
+        public static void OnSpawnAllRoles() {
+            SpawnAllRoles?.Invoke();
         }
         public static SpawningRoleEventArg OnSpawningRole(SpawningRoleEventArg args) {
             SpawningRole?.Invoke(args);

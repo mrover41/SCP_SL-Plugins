@@ -1,23 +1,21 @@
-using System.Linq;
-using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
-using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Corwarx_Project.Features.RoleSystem.Managers;
+using Instinct.Core.Features.ModuleSystem.Attributies;
+using Instinct.Core.Features.ModuleSystem.BaseClass;
+using Instinct.Core.Features.RoleSystem.Managers;
 using LabApi.Events.Arguments.PlayerEvents;
-using LabApi.Features.Wrappers;
 using PlayerRoles;
 
-namespace Corwarx_Project.Modules {
+namespace Instinct.Core.Modules {
     [LoadModule]
     public class RoleManager : ModuleBase {
         public override void OnEnable() {
-            LabApi.Events.Handlers.PlayerEvents.Left += OnDisconnect;
-            LabApi.Events.Handlers.ServerEvents.RoundStarted += OmStartRound;
+            LabApi.Events.Handlers.PlayerEvents.Left += this.OnDisconnect;
+            LabApi.Events.Handlers.ServerEvents.RoundStarted += this.OmStartRound;
             base.OnEnable();
         }
 
         public override void OnDisable() {
-            LabApi.Events.Handlers.PlayerEvents.Left -= OnDisconnect;
-            LabApi.Events.Handlers.ServerEvents.RoundStarted -= OmStartRound;
+            LabApi.Events.Handlers.PlayerEvents.Left -= this.OnDisconnect;
+            LabApi.Events.Handlers.ServerEvents.RoundStarted -= this.OmStartRound;
             base.OnDisable();
         }
 

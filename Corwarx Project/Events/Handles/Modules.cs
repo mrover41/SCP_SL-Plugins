@@ -1,7 +1,6 @@
-﻿using Corwarx_Project.Events.Args.Modules;
-using System;
+﻿using Instinct.Core.Events.Args.Modules;
 
-namespace Corwarx_Project.Events.Handles {
+namespace Instinct.Core.Events.Handles {
     public static class Module {
         public static event Action<RegModuleEventArg> RegModuleEvent;
         public static event Action<EnableModuleEventArg> EnableModuleEvent;

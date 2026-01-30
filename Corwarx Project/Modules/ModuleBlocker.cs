@@ -1,21 +1,21 @@
-﻿/*using Corwarx_Project.Core;
-using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
-using Corwarx_Project.Events.Args.Modules;
-using Corwarx_Project.Features.ModuleSystem.BaseClass;
+﻿/*using Instinct.Core;
+using Instinct.Core.Features.ModuleSystem.Atributies;
+using Instinct.Events.Args.Modules;
+using Instinct.Features.ModuleSystem.BaseClass;
 using LabApi.API.Features;
 
-namespace Corwarx_Project.Modules {
+namespace Instinct.Modules {
     [LoadModule]
     internal class ModuleBlocker : ModuleBase {
         public override string Name => "Module Blocker";
 
         public override void OnEnable() {
-            Corwarx_Project.Events.Handles.Module.EnableModuleEvent += OnModuleEnable;
+            Instinct.Events.Handles.Module.EnableModuleEvent += OnModuleEnable;
             base.OnEnable();
         }
 
         public override void OnDisable() {
-            Corwarx_Project.Events.Handles.Module.EnableModuleEvent -= OnModuleEnable;
+            Instinct.Events.Handles.Module.EnableModuleEvent -= OnModuleEnable;
             base.OnDisable();
         }
 

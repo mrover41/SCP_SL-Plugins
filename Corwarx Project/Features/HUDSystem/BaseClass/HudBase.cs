@@ -1,9 +1,9 @@
-﻿/*using Corwarx_Project.Features.HUDSystem.Structures;
+﻿/*using Instinct.Features.HUDSystem.Structures;
 using LabApi.API.Features;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using UnityEngine.Instinct.UI;
 
-namespace Corwarx_Project.Features.HUDSystem.BaseClass {
+namespace Instinct.Features.HUDSystem.BaseClass {
     public abstract class HudBase : HudUpdater {
         public List<Player> Players;
         private Dictionary<Player, List<TimedElemRef<SetElement>>> timedElemRefs = new Dictionary<Player, List<TimedElemRef<SetElement>>>();

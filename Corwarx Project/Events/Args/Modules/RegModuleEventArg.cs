@@ -1,9 +1,9 @@
-﻿using Corwarx_Project.Features.ModuleSystem.BaseClass;
+﻿using Instinct.Core.Features.ModuleSystem.BaseClass;
 
-namespace Corwarx_Project.Events.Args.Modules {
+namespace Instinct.Core.Events.Args.Modules {
     public class RegModuleEventArg {
         public RegModuleEventArg(ModuleBase module) {
-            Module = module;
+            this.Module = module;
         }
         public ModuleBase Module { get; private set; }
     }

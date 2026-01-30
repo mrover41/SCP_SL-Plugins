@@ -1,11 +1,11 @@
-﻿namespace Corwarx_Project.Events.Args.Administration {
+﻿namespace Instinct.Core.Events.Args.Administration {
     public class AddingWarnEventArg {
         public AddingWarnEventArg(string steamID, string message, string nickname, int player_id) {
-            SteamID = steamID;
-            Message = message;
-            Nickname = nickname;
-            PlayerID = player_id;
-            IsAllowed = true;
+            this.SteamID = steamID;
+            this.Message = message;
+            this.Nickname = nickname;
+            this.PlayerID = player_id;
+            this.IsAllowed = true;
         }
 
         public string SteamID { get; }

@@ -1,29 +1,21 @@
-using System.Collections.Generic;
-using System.Linq;
-using Corwarx_Project.Features.RoleSystem.Managers;
-using LabApi.API.Enums;
-using LabApi.API.Features;
 using HarmonyLib;
-using MEC;
+using Instinct.Core.Features.RoleSystem.Managers;
 using PlayerRoles;
-using PlayerRoles.RoleAssign;
 using Respawning;
 using Respawning.Waves;
 
-namespace Corwarx_Project.Patchs {
+namespace Instinct.Core.Patchs {
     [HarmonyPatch(typeof(WaveManager), nameof(WaveManager.Spawn))]
-    public static class WaveSpawnPatch {
-        [HarmonyPrefix]
-        public static bool Prefix(SpawnableWaveBase wave) {
-            SpawnManager.SpawnPlayers(Player.List.Where(x => x.Role == RoleTypeId.Spectator).ToList(), SpawnReason.Respawn, wave.TargetFaction);
+    internal static class WaveSpawnPatch {
+        private static bool Prefix(SpawnableWaveBase wave) {
+            SpawnManager.SpawnPlayers(Player.List.Where(x => x.Role == RoleTypeId.Spectator).ToList(), RoleChangeReason.Respawn, wave.TargetFaction);
             return true;
         }
     }
 
     /*[HarmonyPatch(typeof(HumanSpawner), nameof(HumanSpawner.AssignHumanRoleToRandomPlayer))]
-    public static class RoundSpawnPatch {
-        [HarmonyPostfix]
-        public static void Postfix(RoleTypeId role) {
+    internal static class RoundSpawnPatch {
+        private static void Postfix(RoleTypeId role) {
             List<ReferenceHub> referenceHubs = HumanSpawner.Candidates;
 
             referenceHubs.TryGetRandomItem(out ReferenceHub random);

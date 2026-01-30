@@ -1,45 +1,34 @@
-﻿using Corwarx_Project.Features.Components.PlayerComponents;
-using InventorySystem.Items.Pickups;
-using LabApi.Features.Wrappers;
-using System.Collections.Generic;
-using System.Linq;
+﻿using InventorySystem.Items.Pickups;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-using Logger = LabApi.Features.Console.Logger;
-
-namespace Corwarx_Project.Extensions {
+namespace Instinct.Core.Extensions {
     public static class PlayerExtensions {
-        public static PlayerMovement GetPlayerMovement(this Player pl) {
-            if (pl.GameObject.TryGetComponent(out PlayerMovement obj))
-                return obj;
-            return null;
-        }
-       
-
-        public static bool PickUpKeyCard(this Player player, float dist = 4) {
-            if (UnityEngine.Physics.Linecast(player.Camera.position, player.Camera.position + player.Camera.forward * dist, out RaycastHit hit)) { 
+        extension(Player? player) {
+            public bool PickUpKeyCard(float dist = 4) {
+                if (!Physics.Linecast(player!.Camera.position, player.Camera.position + player.Camera.forward * dist, out RaycastHit hit)) return false;
                 Logger.Info($"Hit: {hit.collider.gameObject.name}");
                 ItemPickupBase pickup = hit.collider.gameObject.GetComponentInParent<ItemPickupBase>();
-                if (pickup != null) {
-
-                    if (Pickup.Get(pickup).Type is ItemType.KeycardJanitor or ItemType.KeycardScientist or ItemType.KeycardResearchCoordinator or ItemType.KeycardZoneManager or ItemType.KeycardGuard or ItemType.KeycardMTFPrivate or ItemType.KeycardContainmentEngineer or ItemType.KeycardMTFOperative or ItemType.KeycardMTFCaptain or ItemType.KeycardFacilityManager or ItemType.KeycardChaosInsurgency or ItemType.KeycardO5)
-                    {
-                        player.AddItem(Pickup.Get(pickup));
-                        GameObject.Destroy(pickup.gameObject);
-                        return true;
-                    }
-                }
+                
+                if (pickup == null) return false;
+                if (Pickup.Get(pickup).Type is not (ItemType.KeycardJanitor or ItemType.KeycardScientist
+                    or ItemType.KeycardResearchCoordinator or ItemType.KeycardZoneManager or ItemType.KeycardGuard
+                    or ItemType.KeycardMTFPrivate or ItemType.KeycardContainmentEngineer
+                    or ItemType.KeycardMTFOperative or ItemType.KeycardMTFCaptain or ItemType.KeycardFacilityManager
+                    or ItemType.KeycardChaosInsurgency or ItemType.KeycardO5)) return false;
+                
+                player.AddItem(Pickup.Get(pickup));
+                Object.Destroy(pickup.gameObject);
+                
+                return true;
             }
-            return false;
+
+            public Player? GetFromView(float lenght) {
+                return !Physics.Raycast(player!.Camera.position, player.Camera.forward, out RaycastHit hit, lenght) ? null : Player.Get(hit.transform.GetComponentInParent<ReferenceHub>());
+            }
+
+            public string ToShortString() => player is null || player.IsHost ? "Server" : $"{player.Nickname} ({player.PlayerId}|{player.UserId})";
+            public List<Player> FindNearby(float distance) => Player.List.Where(x => Vector3.Distance(player!.Position, x.Position) <= distance && x != player).ToList();
         }
-
-        public static Player GetFromView(this Player owner, float lenght) {
-            if (!Physics.Raycast(owner.Camera.position, owner.Camera.forward, out var hit, lenght)) return null;
-
-            return Player.Get(hit.transform.GetComponentInParent<ReferenceHub>());
-        }
-
-        public static string ToShortString(this Player pl) => pl is null || pl.IsHost ? "Server" : $"{pl.Nickname} ({pl.PlayerId}|{pl.UserId})";
-        public static List<Player> FindNearby(this Player pl, float distance) => Player.List.Where(x => Vector3.Distance(pl.Position, x.Position) <= distance && x != pl).ToList();
     }
 }

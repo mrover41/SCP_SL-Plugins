@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-namespace Corwarx_Project.Features.HUDSystem.BaseClass {
+﻿namespace Instinct.Core.Features.HUDSystem.BaseClass {
     public abstract class HudUpdater {
         public virtual void OnEnable() { }
         public virtual void OnDisable() { }

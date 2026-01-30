@@ -1,23 +1,21 @@
-﻿using Corwarx_Project.Events.Args.Administration;
-using Corwarx_Project.Events.Args.Modules;
-using Corwarx_Project.Events.Args.Plugin;
-using Corwarx_Project.Events.Args.Roles;
-using Corwarx_Project.Events.Handles;
-using Corwarx_Project.Extensions;
+﻿using Instinct.Core.Events.Args.Administration;
+using Instinct.Core.Events.Args.Modules;
+using Instinct.Core.Events.Args.Plugin;
+using Instinct.Core.Events.Args.Roles;
+using Instinct.Core.Events.Handles;
 using LabApi.Events.Arguments.PlayerEvents;
-using LabApi.Features.Console;
 
-namespace Corwarx_Project {
+namespace Instinct.Core {
     internal class EventHandler {
-        public void OnPlayerJoined(PlayerJoinedEventArgs ev) {
+        public static void OnPlayerJoined(PlayerJoinedEventArgs ev) {
             Logger.Debug($"Connected: {ev.Player.Nickname}");
         }
 
-        public void RegisterEvents() {
+        public static void RegisterEvents() {
             Roles.SpawnAllRoles += OnSpawnAllRoles;
             Roles.SpawnRole += OnSpawnRole;
 
-            Plugin.LoadPlugin += OnLodadPlugin;
+            Plugin.LoadPlugin += OnLoadPlugin;
             Plugin.UnLoadPlugin += OnUnLoadPlugin;
 
             Module.RegModuleEvent += OnRegModule;
@@ -28,11 +26,11 @@ namespace Corwarx_Project {
             Administration.AddWarnEvent += OnAddWarn;
         }
 
-        public void UnRegisterEvents() {
+        public static void UnRegisterEvents() {
             Roles.SpawnAllRoles -= OnSpawnAllRoles;
             Roles.SpawnRole -= OnSpawnRole;
 
-            Plugin.LoadPlugin -= OnLodadPlugin;
+            Plugin.LoadPlugin -= OnLoadPlugin;
             Plugin.UnLoadPlugin -= OnUnLoadPlugin;
 
             Module.RegModuleEvent -= OnRegModule;
@@ -43,47 +41,47 @@ namespace Corwarx_Project {
             Administration.AddWarnEvent -= OnAddWarn;
         }
 
-        private void OnSpawnAllRoles(SpawnAllRolesEventArg ev) {
+        private static void OnSpawnAllRoles() {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Spawning all roles");
         }
 
-        private void OnSpawnRole(SpawnRoleEventArg ev) {
+        private static void OnSpawnRole(SpawnRoleEventArg ev) {
             Logger.Debug("===EVENT===");
             //Logger.Debug($"Spawning role: {ev.Role.Name}");
         }
 
-        private void OnLodadPlugin(LoadPluginEventArgs ev) {
+        private static void OnLoadPlugin(LoadPluginEventArgs ev) {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Loading plugin: {ev.Name}");
         }
 
-        private void OnUnLoadPlugin(UnLoadPluginEventArgs ev) {
+        private static void OnUnLoadPlugin(UnLoadPluginEventArgs ev) {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Unloading plugin: {ev.Name}");
         }
 
-        private void OnRegModule(RegModuleEventArg ev) {
+        private static void OnRegModule(RegModuleEventArg ev) {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Registering module: {ev.Module.Name}");
         }
 
-        private void OnEnabledModule(EnabledModuleEventArg ev) {
+        private static void OnEnabledModule(EnabledModuleEventArg ev) {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Enabled module: {ev.Module.Name}");
         }
 
-        private void OnDisableModule(DisableModuleEventArg ev) {
+        private static void OnDisableModule(DisableModuleEventArg ev) {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Disabling module: {ev.Module.Name}");
         }
 
-        private void OnUnregisterModule(UnregisterModuleEventArg ev) {
+        private static void OnUnregisterModule(UnregisterModuleEventArg ev) {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Unregistering module: {ev.Module.Name}");
         }
 
-        private void OnAddWarn(AddWarnEventArg ev) {
+        private static void OnAddWarn(AddWarnEventArg ev) {
             Logger.Debug("===EVENT===");
             Logger.Debug($"Adding warn: {ev.Message} to player: {ev.PlayerID} / {ev.SteamID}");
         }

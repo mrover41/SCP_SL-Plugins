@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Corwarx_Project.Events.Handles {
+﻿namespace Instinct.Core.Events.Handles {
     public static class Plugin {
         public static event Action<Args.Plugin.LoadPluginEventArgs> LoadPlugin;
         public static event Action<Args.Plugin.UnLoadPluginEventArgs> UnLoadPlugin;

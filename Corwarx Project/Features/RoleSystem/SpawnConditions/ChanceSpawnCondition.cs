@@ -1,19 +1,11 @@
-using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
-using LabApi.API.Enums;
-using LabApi.API.Features;
+using Instinct.Core.Features.RoleSystem.BaseClass.Spawn;
 using PlayerRoles;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Corwarx_Project.Features.RoleSystem.SpawnConditions {
-    public class ChanceSpawnCondition : SpawnConditionBase {
-        private readonly int _chance;
-
-        public ChanceSpawnCondition(int chance) {
-            _chance = chance;
-        }
-        
-        public override bool CanSpawn(Player player, SpawnReason reason, Faction faction) {
-            return Random.Range(0, 100) < _chance;
+namespace Instinct.Core.Features.RoleSystem.SpawnConditions {
+    public class ChanceSpawnCondition(int chance) : SpawnConditionBase {
+        public override bool CanSpawn(Player player, RoleChangeReason reason, Faction faction) {
+            return Random.Range(0, 100) < chance;
         }
     }
 }
