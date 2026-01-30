@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Instinct.Gameplay.Modules.Integrations {
     //[LoadModule]
-    internal class ItemIntegration : ModuleBase {
+    /*internal class ItemIntegration : ModuleBase {
         public override string Name => "Item Integration";
 
         public override void OnEnable() {
@@ -28,7 +28,7 @@ namespace Instinct.Gameplay.Modules.Integrations {
                     switch (pickup.Type) {
                         case ItemType.GrenadeFlash:
                             pickup.Destroy();
-                            Map./*i dont know what*/(pickup.Position, LabApi.API.Enums.ProjectileType.Flashbang, pickup.PreviousOwner);
+                            Map./*i dont know what(pickup.Position, LabApi.API.Enums.ProjectileType.Flashbang, pickup.PreviousOwner);
                             break;
                         case ItemType.GrenadeHE:
                             pickup.Destroy();
@@ -42,5 +42,5 @@ namespace Instinct.Gameplay.Modules.Integrations {
                 }
             }
         }
-    }
+    }*/
 }

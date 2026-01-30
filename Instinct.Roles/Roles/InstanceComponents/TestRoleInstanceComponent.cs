@@ -1,4 +1,4 @@
-namespace Corwarx_Project.Roles.InstanceComponents {
+namespace Instinct.Roles.Roles.InstanceComponents {
     public class TestRoleInstanceComponent : RoleInstanceComponentBase {
         public TestRoleInstanceComponent(RoleBase role, Player player) : base(role, player) {
         }

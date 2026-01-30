@@ -25,10 +25,10 @@ namespace Instinct.Gameplay.Modules.Integrations {
                 return;
             
             Door door = Door.Get(button.GetComponentInParent<DoorVariant>());
-            if (door.Permissions == DoorPermissionFlags.None || door.IsLocked || door.e) return;
+            if (door.Permissions == DoorPermissionFlags.None || door.IsLocked || door.IsDestroyed || !door.CanInteract) return;
             
-            door.IsOpen = !door.IsOpen; door.Lock(this._lTime, LabApi.API.Enums.DoorLockType.AdminCommand);
-            ev.Player.ShowHitMarker(0.5f);
+            door.IsOpened = !door.IsOpened;
+            ev.Player.SendHitMarker(0.5f);
         }
     }
 }

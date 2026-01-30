@@ -1,7 +1,7 @@
 using Instinct.Core.Features.RoleSystem.BaseClass.Role;
 using UnityEngine;
 
-namespace Corwarx_Project.Roles.InstanceComponents {
+namespace Instinct.Roles.Roles.InstanceComponents {
     public class MedicRoleInstanceComponent : RoleInstanceComponentBase {
         public MedicRoleInstanceComponent(BaseCustomRole baseCustomRole, Player player) : base(baseCustomRole, player) {
         }

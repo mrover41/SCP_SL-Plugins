@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Corwarx Project\Instinct.Core.csproj" />
+    <ProjectReference Include="..\Instinct.Core\Instinct.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Instinct.Items.Items;
 
-namespace Corwarx_Project {
-    public class Config : IConfig {
+namespace Instinct.Roles {
+    public class Config {
         public RoleConfig TestRoleConfig { get; set; } = new RoleConfig {
             ID = 5,
             Name = "TestRole",

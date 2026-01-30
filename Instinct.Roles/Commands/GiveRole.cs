@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using CommandSystem;
 
-namespace Corwarx_Project.Commands {
+namespace Instinct.Roles.Commands {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
     public class GiveRole : ICommand { //THIS A TEST COMMAND
         public string Command => "GiveRole";

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Corwarx_Project.Roles {
+namespace Instinct.Roles.Roles {
     //[LoadRole(typeof(TestRoleInstanceComponent))]
     public class TestRole : RoleBase {
         public TestRole() : base(Loader.Instance.Config.TestRoleConfig) {

@@ -2,13 +2,13 @@
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
-		<RootNamespace>Corwarx_Project</RootNamespace>
+		<RootNamespace>Instinct.Roles</RootNamespace>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 
 	<ItemGroup>
-    <ProjectReference Include="..\Corwarx Project\Instinct.Core.csproj" />
+    <ProjectReference Include="..\Instinct.Core\Instinct.Core.csproj" />
     <ProjectReference Include="..\Instinct.Items\Instinct.Items.csproj" />
   </ItemGroup>
 
@@ -39,6 +39,12 @@
     </Reference>
     <Reference Include="Mirror.Components">
       <HintPath>..\libs\Mirror.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror">
+      <HintPath>..\libs\Mirror.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandSystem.Core">
+      <HintPath>..\libs\CommandSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\libs\Mono.Security.dll</HintPath>
