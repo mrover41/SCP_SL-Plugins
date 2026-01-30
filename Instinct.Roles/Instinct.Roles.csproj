@@ -13,23 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="BouncyCastle.Cryptography">
-      <HintPath>..\libs\BouncyCastle.Cryptography.dll</HintPath>
-    </Reference>
-    <Reference Include="Caress">
-      <HintPath>..\libs\Caress.dll</HintPath>
-    </Reference>
     <Reference Include="CommandSystem.Core">
       <HintPath>..\libs\CommandSystem.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DnsClient">
-      <HintPath>..\libs\DnsClient.dll</HintPath>
-    </Reference>
-    <Reference Include="Facepunch.Steamworks.Posix">
-      <HintPath>..\libs\Facepunch.Steamworks.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop">
-      <HintPath>..\libs\Interop.dll</HintPath>
     </Reference>
     <Reference Include="LabApi">
       <HintPath>..\libs\LabApi.dll</HintPath>
@@ -37,17 +22,11 @@
     <Reference Include="Mirror">
       <HintPath>..\libs\Mirror.dll</HintPath>
     </Reference>
-    <Reference Include="Mirror.Components">
-      <HintPath>..\libs\Mirror.Components.dll</HintPath>
-    </Reference>
     <Reference Include="Mirror">
       <HintPath>..\libs\Mirror.dll</HintPath>
     </Reference>
     <Reference Include="CommandSystem.Core">
       <HintPath>..\libs\CommandSystem.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>..\libs\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>..\libs\netstandard.dll</HintPath>

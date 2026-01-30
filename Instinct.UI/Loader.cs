@@ -21,6 +21,7 @@ namespace Instinct.UI {
 
         public override void Enable()
         {
+
             ModuleManager.RegisterModules(Assembly.GetExecutingAssembly());
         }
 

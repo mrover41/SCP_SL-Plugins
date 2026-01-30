@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Instinct.Items", "Instinct.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Instinct.Admin", "Instinct.Admin\Instinct.Admin.csproj", "{DE844006-1753-4AAD-BFF0-945557F0D8D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instinct.UI", "Instinct.UI\Instinct.UI.csproj", "{FDE351B7-8C9D-4810-9340-9D961C2F3618}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{DE844006-1753-4AAD-BFF0-945557F0D8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE844006-1753-4AAD-BFF0-945557F0D8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE844006-1753-4AAD-BFF0-945557F0D8D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDE351B7-8C9D-4810-9340-9D961C2F3618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDE351B7-8C9D-4810-9340-9D961C2F3618}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDE351B7-8C9D-4810-9340-9D961C2F3618}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDE351B7-8C9D-4810-9340-9D961C2F3618}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

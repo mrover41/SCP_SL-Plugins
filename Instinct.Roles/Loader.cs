@@ -1,6 +1,7 @@
 ﻿using System;
 using LabApi.Features;
 using LabApi.Loader.Features.Plugins;
+using Instinct.Core.Modules;
 
 namespace Instinct.Roles {
     public class Loader : Plugin<Config> {
