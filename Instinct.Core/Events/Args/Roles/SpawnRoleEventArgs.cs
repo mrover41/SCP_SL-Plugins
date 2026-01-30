@@ -2,9 +2,9 @@
 
 namespace Instinct.Core.Events.Args.Roles {
     public class SpawnRoleEventArg {
-        public SpawnRoleEventArg(BaseCustomRole baseCustomRole) {
-            this.BaseCustomRole = baseCustomRole;
+        public SpawnRoleEventArg(CustomRoleBase customRoleBase) {
+            this.CustomRoleBase = customRoleBase;
         }
-        public BaseCustomRole BaseCustomRole { get; set; }
+        public CustomRoleBase CustomRoleBase { get; set; }
     }
 }

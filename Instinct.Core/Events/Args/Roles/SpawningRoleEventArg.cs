@@ -2,11 +2,11 @@
 
 namespace Instinct.Core.Events.Args.Roles {
     public class SpawningRoleEventArg {
-        public SpawningRoleEventArg(BaseCustomRole baseCustomRole) {
-            this.BaseCustomRole = baseCustomRole;
+        public SpawningRoleEventArg(CustomRoleBase customRoleBase) {
+            this.CustomRoleBase = customRoleBase;
             this.IsAllowed = true;
         }
-        public BaseCustomRole BaseCustomRole { get; set; }
+        public CustomRoleBase CustomRoleBase { get; set; }
         public bool IsAllowed { get; set; } = true;
     }
 }

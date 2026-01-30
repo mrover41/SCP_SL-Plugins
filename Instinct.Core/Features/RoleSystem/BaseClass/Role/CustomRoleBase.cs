@@ -2,7 +2,7 @@
 using Instinct.Core.Features.RoleSystem.Containers;
 
 namespace Instinct.Core.Features.RoleSystem.BaseClass.Role {
-    public abstract class BaseCustomRole(RoleConfig config) {
+    public abstract class CustomRoleBase(RoleConfig config) {
         private static readonly List<Player> Players = [];
         
         public readonly RoleConfig RoleConfig = config;

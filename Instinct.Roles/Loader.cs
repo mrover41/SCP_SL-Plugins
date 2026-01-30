@@ -20,7 +20,7 @@ namespace Instinct.Roles {
         public Loader() => Instance = this;
         
         public override void Enable() {
-            RoleManager.RegisterAllRoles(System.Reflection.Assembly.GetExecutingAssembly());
+            Core.Features.RoleSystem.Managers.RoleManager.RegisterAllRoles(System.Reflection.Assembly.GetExecutingAssembly());
         }
         
         

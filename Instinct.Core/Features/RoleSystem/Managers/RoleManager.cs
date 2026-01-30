@@ -4,12 +4,12 @@ using Instinct.Core.Features.RoleSystem.BaseClass.Role;
 
 namespace Instinct.Core.Features.RoleSystem.Managers {
     public static class RoleManager {
-        internal static List<BaseCustomRole?> Roles { get; } = [];
+        internal static List<CustomRoleBase?> Roles { get; } = [];
         private static List<RoleInstanceComponentBase> _roleInstances = [];
         
         public static void RegisterAllRoles(Assembly asm) {
             foreach (Type type in asm.GetTypes().Where(t => t.GetCustomAttribute<LoadRoleAttribute>() != null)) {
-                Roles.Add(Activator.CreateInstance(type) as BaseCustomRole);
+                Roles.Add(Activator.CreateInstance(type) as CustomRoleBase);
                 
                 Logger.Info($"Registered role {type.Name}");
             }
@@ -17,7 +17,7 @@ namespace Instinct.Core.Features.RoleSystem.Managers {
 
         extension(Player player) {
             public void AddRole(int id) {
-                BaseCustomRole? baseCustomRole = Roles.Find(x => x?.RoleConfig.ID == id);
+                CustomRoleBase? baseCustomRole = Roles.Find(x => x?.RoleConfig.ID == id);
                 if (baseCustomRole == null)
                     return;
             
@@ -31,7 +31,7 @@ namespace Instinct.Core.Features.RoleSystem.Managers {
                 _roleInstances.Add(roleInstance);
             }
 
-            public void AddRole(BaseCustomRole? baseCustomRole) {
+            public void AddRole(CustomRoleBase? baseCustomRole) {
                 if (baseCustomRole == null)
                     return;
             
@@ -52,7 +52,7 @@ namespace Instinct.Core.Features.RoleSystem.Managers {
                         return;
             
                     roleInstance.OnRemove();
-                    roleInstance.BaseCustomRole.DisableRole(player);
+                    roleInstance.CustomRoleBase.DisableRole(player);
             
                     _roleInstances.Remove(roleInstance);
                 }

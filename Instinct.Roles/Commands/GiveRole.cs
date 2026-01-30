@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using CommandSystem;
+using Instinct.Core.Features.RoleSystem.Managers;
+using LabApi.Features.Wrappers;
 
 namespace Instinct.Roles.Commands {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
@@ -15,9 +17,9 @@ namespace Instinct.Roles.Commands {
             Player executer = Player.Get(sender);
 
             if (arguments.Count < 1) {
-                executer.RemoveRole();
+                executer?.RemoveRole();
             }
-            executer.AddRole(int.Parse(arguments.First()));
+            executer?.AddRole(int.Parse(arguments.First()));
 
             response = "Done";
             return true;

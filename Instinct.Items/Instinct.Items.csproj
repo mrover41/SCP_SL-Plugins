@@ -27,6 +27,9 @@
     <Reference Include="Interop">
       <HintPath>..\libs\Interop.dll</HintPath>
     </Reference>
+    <Reference Include="LabApi">
+      <HintPath>..\libs\LabApi.dll</HintPath>
+    </Reference>
     <Reference Include="Mirror.Components">
       <HintPath>..\libs\Mirror.Components.dll</HintPath>
     </Reference>

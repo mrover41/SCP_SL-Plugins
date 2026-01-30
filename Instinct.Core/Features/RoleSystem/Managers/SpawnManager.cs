@@ -11,7 +11,7 @@ namespace Instinct.Core.Features.RoleSystem.Managers {
         }
 
         public static bool SpawnPlayer(Player player, RoleChangeReason reason, Faction faction) {
-            foreach (BaseCustomRole? role in from role in RoleManager.Roles let can = role?.SpawnConditions != null && (role.SpawnConditions).All(condition => condition.CanSpawn(player, reason, faction)) where can select role) {
+            foreach (CustomRoleBase? role in from role in RoleManager.Roles let can = role?.SpawnConditions != null && (role.SpawnConditions).All(condition => condition.CanSpawn(player, reason, faction)) where can select role) {
                 player.AddRole(role);
                 if (role?.SpawnConditions == null) return true;
                 

@@ -1,30 +1,33 @@
+using Instinct.Core.Extensions;
 using Instinct.Core.Features.RoleSystem.BaseClass.Role;
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Features.Wrappers;
+using PlayerRoles;
 using UnityEngine;
 
 namespace Instinct.Roles.Roles.InstanceComponents {
     public class MedicRoleInstanceComponent : RoleInstanceComponentBase {
-        public MedicRoleInstanceComponent(BaseCustomRole baseCustomRole, Player player) : base(baseCustomRole, player) {
+        public MedicRoleInstanceComponent(CustomRoleBase customRoleBase, Player player) : base(customRoleBase, player) {
         }
 
         public override void OnAdd() {
-            LabApi.Events.Handlers.Player.UsedItem += OnUsingItem;
+            LabApi.Events.Handlers.PlayerEvents.UsedItem += OnUsingItem;
             base.OnAdd();
         }
 
         public override void OnRemove() {
-            LabApi.Events.Handlers.Player.UsedItem -= OnUsingItem;
+            LabApi.Events.Handlers.PlayerEvents.UsedItem -= OnUsingItem;
             base.OnRemove();
         }
 
-        private void OnUsingItem(UsedItemEventArgs ev) {
+        private void OnUsingItem(PlayerUsedItemEventArgs ev) {
             if (ev.Player == this.Player && ev.Item.Type == ItemType.Medkit) {
-                if (Physics.Raycast(ev.Player.CameraTransform.position + ev.Player.CameraTransform.forward * 0.5f,
-                        ev.Player.CameraTransform.forward, out RaycastHit hit)) {
-                    Player target = this.Player.Get(hit.collider.gameObject);
-                    if (target != null && target.Role.Team == ev.Player.Role.Team) {
-                        target.Heal(15);
-                    }
+
+                Player target = ev.Player.GetFromView(5);
+                if (target != null && target.Role.GetTeam() == ev.Player.Role.GetTeam()) {
+                    target.Heal(15);
                 }
+                
             }
         }
     }

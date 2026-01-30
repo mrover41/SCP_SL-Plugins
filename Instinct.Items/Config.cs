@@ -1,11 +1,7 @@
 ﻿using System.ComponentModel;
 
 namespace Instinct.Items {
-    public class Config : IConfig {
-        [Description("Plugin config")]
-        public bool IsEnabled { get; set; } = true;
-        public bool Debug { get; set; }
-
+    public class Config {
         [Description("SCP049Cuffer config")]
         public float SCP049CufferDistance { get; set; } = 2f;
 

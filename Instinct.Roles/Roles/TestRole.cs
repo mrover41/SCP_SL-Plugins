@@ -1,8 +1,12 @@
+using Instinct.Core.Features.RoleSystem.BaseClass.Role;
+using Instinct.Core.Features.RoleSystem.SpawnConditions;
+using LabApi.Features.Wrappers;
+using PlayerRoles;
 using UnityEngine;
 
 namespace Instinct.Roles.Roles {
     //[LoadRole(typeof(TestRoleInstanceComponent))]
-    public class TestRole : RoleBase {
+    public class TestRole : CustomRoleBase {
         public TestRole() : base(Loader.Instance.Config.TestRoleConfig) {
             SpawnConditions.Add(new RoundSpawnCondition(Faction.FoundationEnemy));
             SpawnConditions.Add(new LimitRoundSpawnCondition(1));

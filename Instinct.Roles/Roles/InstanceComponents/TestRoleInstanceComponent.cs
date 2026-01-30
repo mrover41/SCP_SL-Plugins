@@ -1,22 +1,27 @@
+using Instinct.Core.Features.RoleSystem.BaseClass.Role;
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Features.Wrappers;
+using PlayerStatsSystem;
+
 namespace Instinct.Roles.Roles.InstanceComponents {
     public class TestRoleInstanceComponent : RoleInstanceComponentBase {
-        public TestRoleInstanceComponent(RoleBase role, Player player) : base(role, player) {
+        public TestRoleInstanceComponent(CustomRoleBase role, Player player) : base(role, player) {
         }
 
         public override void OnAdd() {
-            LabApi.Events.Handlers.Player.Hurt += OnHurt;
+            LabApi.Events.Handlers.PlayerEvents.Hurting += OnHurt;
             base.OnAdd();
         }
 
         public override void OnRemove() {
-            LabApi.Events.Handlers.Player.Hurt -= OnHurt;
+            LabApi.Events.Handlers.PlayerEvents.Hurting -= OnHurt;
             base.OnRemove();
         }
 
-        private void OnHurt(HurtEventArgs ev) {
+        private void OnHurt(PlayerHurtingEventArgs ev) {
             if (ev.Player != Player) return;
-
-            ev.DamageHandler.Damage *= 0.7f;
+            
+            ev.DamageHandler = new CustomReasonDamageHandler(ev.DamageHandler.DeathScreenText, 50);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Instinct.Gameplay {
         public uint CriticalDamage { get; set; } = 5;
         public string Message { get; set; } = "You are bleeding!";
         public string BroadcastMessage { get; set; } = "You are bleeding!";
+        
         [Description("Lobby config")]
         public float X, Y, Z;
     }
