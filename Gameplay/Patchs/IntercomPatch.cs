@@ -1,4 +1,4 @@
-﻿using Exiled.API.Features;
+﻿using LabApi.API.Features;
 using HarmonyLib;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace Gameplay.Patchs {
         [HarmonyPrefix]
         private static bool OnUpdate(PlayerRoles.Voice.Intercom __instance) {
             if (!Round.IsLobby) return true;
-            Exiled.API.Features.Intercom.DisplayText = $"<size=200><color=#{HColor(0.5f)}> ◀✅▶ До начала раунда: {(Round.LobbyWaitingTime == -2 ? "неизвестно" : Round.LobbyWaitingTime.ToString())}\n" +
+            LabApi.API.Features.Intercom.DisplayText = $"<size=200><color=#{HColor(0.5f)}> ◀✅▶ До начала раунда: {(Round.LobbyWaitingTime == -2 ? "неизвестно" : Round.LobbyWaitingTime.ToString())}\n" +
                 $"Количество игроков: {Player.List.Count} </color></size>";
             return true;
         }

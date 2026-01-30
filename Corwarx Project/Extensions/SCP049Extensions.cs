@@ -1,5 +1,5 @@
 ﻿using Corwarx_Project.Features.Components.SCP049Components;
-using Exiled.API.Features;
+using LabApi.Features.Wrappers;
 using PlayerRoles;
 
 namespace Corwarx_Project.Extensions {

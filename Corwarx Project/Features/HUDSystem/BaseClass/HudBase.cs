@@ -1,5 +1,5 @@
 ﻿/*using Corwarx_Project.Features.HUDSystem.Structures;
-using Exiled.API.Features;
+using LabApi.API.Features;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -17,7 +17,7 @@ namespace Corwarx_Project.Features.HUDSystem.BaseClass {
         }
 
         public override void Tick() {
-            //Log.Debug($"Tick {GetType().Name} with {Players.Count} players [BEGIN]");
+            //Logger.Debug($"Tick {GetType().Name} with {Players.Count} players [BEGIN]");
             try { 
                 foreach (Player player in Players) {
                     if (player == null) {
@@ -49,12 +49,12 @@ namespace Corwarx_Project.Features.HUDSystem.BaseClass {
                     }
                     displayCore.Update();
                     hashCode = currentHashCode;
-                    //Log.Debug($"Updated HUD for {player.Nickname} with hash code {hashCode}");
+                    //Logger.Debug($"Updated HUD for {player.Nickname} with hash code {hashCode}");
                 }
             } catch (System.Exception ex) {
-                Log.Error($"Error updating HUD: {ex.Message}\n{ex.StackTrace}");
+                Logger.Error($"Error updating HUD: {ex.Message}\n{ex.StackTrace}");
             }
-            //Log.Debug($"Tick {GetType().Name} with {Players.Count} players");
+            //Logger.Debug($"Tick {GetType().Name} with {Players.Count} players");
         }
 
         public void ClearAll(Player player) {

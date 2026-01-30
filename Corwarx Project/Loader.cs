@@ -1,6 +1,9 @@
 ﻿using Corwarx_Project.Features.ModuleSystem.Manager;
-using Exiled.API.Features;
 using HarmonyLib;
+using LabApi.Features;
+using LabApi.Features.Console;
+using LabApi.Loader.Features.Plugins;
+using System;
 using System.Reflection;
 using Plugin = Corwarx_Project.Events.Handles.Plugin;
 
@@ -8,13 +11,21 @@ namespace Corwarx_Project.Core {
     public class Loader : Plugin<Config> {
         public static Loader Instance { get; private set; }
         public Loader() => Instance = this;
-        public string PluginName => typeof(Loader).Namespace;
+        public override string Name => typeof(Loader).Namespace;
+
+        public override string Description => "Mega simga";
+
+        public override string Author => "Mr_Over41 && everyofflineuser && wexels.dev";
+
+        public override System.Version Version => new Version("1.0.0");
+
+        public override System.Version RequiredApiVersion => LabApiProperties.CurrentVersion;
+
 
         internal static Harmony _harmony;
         internal EventHandler EventHandler = new EventHandler();
 
-        public override void OnEnabled() {
-            Plugin.OnLoadPlugin(new Events.Args.Plugin.LoadPluginEventArgs(PluginName));
+        public void OnEnabled() {
             _harmony = new Harmony("com.corwarx.core");
             _harmony.PatchAll();
 
@@ -24,26 +35,35 @@ namespace Corwarx_Project.Core {
 
             //RueI.RueIMain.EnsureInit();
 
-            Log.Send("\n Plugin CORWAX CORE is running!\n Creator: Mr_Over41\n Made for: Me :3\n oo-ee-oo", Discord.LogLevel.Info, System.ConsoleColor.Yellow);
-            Log.Info($"Plugin {PluginName} started");
-            base.OnEnabled();
+            Logger.Info("\n Plugin CORWAX CORE is running!\n Creator: Mr_Over41\n Made for: Me :3\n oo-ee-oo");
+            Logger.Info($"Plugin {Name} started");
         }
 
-        public override void OnDisabled() {
+        public void OnDisabled() {
             _harmony.UnpatchAll();
             ModuleManager.DisableAllModules();
             UnRegisterEvents();
-            base.OnDisabled();
         }
 
         private void RegisterEvents() {
             EventHandler.RegisterEvents();
-            Exiled.Events.Handlers.Player.Verified += EventHandler.OnPlayerVerifed;
+            LabApi.Events.Handlers.PlayerEvents.Joined += EventHandler.OnPlayerJoined;
         }
 
         private void UnRegisterEvents() {
             EventHandler.UnRegisterEvents();
-            Exiled.Events.Handlers.Player.Verified -= EventHandler.OnPlayerVerifed;
+            LabApi.Events.Handlers.PlayerEvents.Joined -= EventHandler.OnPlayerJoined;
         }
+
+        public override void Enable()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Disable()
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
 }

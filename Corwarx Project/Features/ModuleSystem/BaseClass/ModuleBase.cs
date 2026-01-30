@@ -1,4 +1,4 @@
-﻿using Exiled.API.Features;
+﻿using LabApi.API.Features;
 
 namespace Corwarx_Project.Features.ModuleSystem.BaseClass {
     public abstract class ModuleBase {
@@ -12,7 +12,7 @@ namespace Corwarx_Project.Features.ModuleSystem.BaseClass {
                 Name = GetType().Name;
         }
         
-        public virtual void OnEnable() => Log.Debug($"Module {Name} with ID {Id} enabled.");
-        public virtual void OnDisable() => Log.Debug($"Module {Name} with ID {Id} disabled.");
+        public virtual void OnEnable() => Logger.Debug($"Module {Name} with ID {Id} enabled.");
+        public virtual void OnDisable() => Logger.Debug($"Module {Name} with ID {Id} disabled.");
     }
 }

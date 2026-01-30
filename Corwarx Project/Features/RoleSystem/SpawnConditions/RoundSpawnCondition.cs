@@ -1,6 +1,6 @@
 using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
-using Exiled.API.Enums;
-using Exiled.API.Features;
+using LabApi.API.Enums;
+using LabApi.API.Features;
 using PlayerRoles;
 
 namespace Corwarx_Project.Features.RoleSystem.SpawnConditions {

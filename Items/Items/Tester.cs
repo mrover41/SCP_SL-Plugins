@@ -1,11 +1,11 @@
-﻿using Exiled.API.Features;
-using Exiled.API.Features.Spawn;
-using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Player;
+﻿using LabApi.API.Features;
+using LabApi.API.Features.Spawn;
+using LabApi.CustomItems.API.Features;
+using LabApi.Events.EventArgs.Player;
 using UnityEngine;
 
 
-[Exiled.API.Features.Attributes.CustomItem(ItemType.GunCOM18)]
+[LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM18)]
 public class Component_Tester : CustomWeapon {
     public override string Description { get; set; } = "Инструмент для разработчика";
     public override float Weight { get; set; } = 2f;
@@ -17,11 +17,11 @@ public class Component_Tester : CustomWeapon {
 
     protected override void SubscribeEvents() {
         base.SubscribeEvents();
-        Exiled.Events.Handlers.Player.Shot += Wapon;
+        LabApi.Events.Handlers.Player.Shot += Wapon;
     }
 
     protected override void UnsubscribeEvents() {
-        Exiled.Events.Handlers.Player.Shot -= Wapon;
+        LabApi.Events.Handlers.Player.Shot -= Wapon;
         base.UnsubscribeEvents();
     }
     void Wapon(ShotEventArgs ev) {
@@ -45,11 +45,11 @@ public class Component_Tester : CustomWeapon {
                 cc += $"{component.GetType().Name}\n";
             }
 
-            Log.Info(raycastHit.transform.gameObject);
-            Log.Info("++++++++++++++++++++++++++++++");
-            Log.Info(cp);
-            Log.Info("===============================");
-            Log.Info(cc);
+            Logger.Info(raycastHit.transform.gameObject);
+            Logger.Info("++++++++++++++++++++++++++++++");
+            Logger.Info(cp);
+            Logger.Info("===============================");
+            Logger.Info(cc);
 
             //var elementReference_1 = new TimedElemRef<SetElement>();
             //displayCore.SetElemTemp(cp, 900, TimeSpan.FromSeconds(5), elementReference_1);

@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using Exiled.API.Enums;
-using Exiled.API.Features;
-using Exiled.API.Features.Pickups;
-using Exiled.API.Features.Spawn;
-using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Enums;
+using LabApi.API.Features;
+using LabApi.API.Features.Pickups;
+using LabApi.API.Features.Spawn;
+using LabApi.CustomItems.API.Features;
+using LabApi.Events.EventArgs.Player;
 using InventorySystem.Items.Pickups;
 using UnityEngine;
 
 
-[Exiled.API.Features.Attributes.CustomItem(ItemType.GunCOM18)]
+[LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM18)]
 public class ItemD : CustomWeapon {
     public override string Description { get; set; } = "Дублює предмети";
     public override float Weight { get; set; } = 2f;
@@ -21,15 +21,15 @@ public class ItemD : CustomWeapon {
 
     protected override void SubscribeEvents() {
         base.SubscribeEvents();
-        Exiled.Events.Handlers.Player.Shot += Wapon;
-        Exiled.Events.Handlers.Player.ChangedItem += Select_Info;
-        Exiled.Events.Handlers.Player.ReloadingWeapon += Reload;
+        LabApi.Events.Handlers.Player.Shot += Wapon;
+        LabApi.Events.Handlers.Player.ChangedItem += Select_Info;
+        LabApi.Events.Handlers.Player.ReloadingWeapon += Reload;
     }
 
     protected override void UnsubscribeEvents() {
-        Exiled.Events.Handlers.Player.Shot -= Wapon;
-        Exiled.Events.Handlers.Player.ChangedItem -= Select_Info;
-        Exiled.Events.Handlers.Player.ReloadingWeapon -= Reload;
+        LabApi.Events.Handlers.Player.Shot -= Wapon;
+        LabApi.Events.Handlers.Player.ChangedItem -= Select_Info;
+        LabApi.Events.Handlers.Player.ReloadingWeapon -= Reload;
         base.UnsubscribeEvents();
     }
     void Select_Info(ChangedItemEventArgs ev) { 

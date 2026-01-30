@@ -16,7 +16,7 @@ If yor a plugin devolper, u can read this [code](https://github.dev/CorwarxProje
 - [Configuration Guide](https://github.com/northwood-studios/LabAPI/wiki/Configuring-Plugins)
 
 1. Ensure you have the EXILED framework installed on your SCP: Secret Laboratory server.
-   - Follow the installation guide at [EXILED Documentation](https://github.com/Exiled-Team/EXILED/wiki/Installation).
+   - Follow the installation guide at [EXILED Documentation](https://github.com/LabApi-Team/EXILED/wiki/Installation).
 
 2. Download the compiled plugin (`Corwars_Core.dll`) or compile it yourself from the source.
 

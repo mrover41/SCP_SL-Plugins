@@ -1,6 +1,6 @@
 ﻿using CommandSystem;
-using Exiled.API.Features;
-using Exiled.API.Features.Pickups;
+using LabApi.API.Features;
+using LabApi.API.Features.Pickups;
 using System;
 using System.Linq;
 

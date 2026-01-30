@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
-using Exiled.API.Enums;
-using Exiled.API.Features;
+using LabApi.Features.Wrappers;
 using PlayerRoles;
 
 namespace Corwarx_Project.Features.RoleSystem.Managers {
     public static class SpawnManager {
-        public static void SpawnPlayers(List<Player> players, SpawnReason reason, PlayerRoles.Faction faction) {
+        public static void SpawnPlayers(List<Player> players, RoleChangeReason reason, PlayerRoles.Faction faction) {
             foreach (Player player in players) {
                 SpawnPlayer(player, reason, faction);
             }
         }
 
-        public static bool SpawnPlayer(Player player, SpawnReason reason, PlayerRoles.Faction faction) {
+        public static bool SpawnPlayer(Player player, RoleChangeReason reason, PlayerRoles.Faction faction) {
             foreach (RoleBase role in RoleManager.Roles) {
                 bool can = true;
                 

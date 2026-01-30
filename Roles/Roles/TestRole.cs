@@ -3,8 +3,8 @@ using Corwarx_Project.Features.RoleSystem.BaseClass;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
 using Corwarx_Project.Features.RoleSystem.SpawnConditions;
 using Corwarx_Roles.Roles.InstanceComponents;
-using Exiled.API.Enums;
-using Exiled.API.Features;
+using LabApi.API.Enums;
+using LabApi.API.Features;
 using PlayerRoles;
 using UnityEngine;
 

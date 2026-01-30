@@ -1,6 +1,6 @@
 ﻿using CommandSystem;
-using Exiled.API.Extensions;
-using Exiled.API.Features;
+using LabApi.API.Extensions;
+using LabApi.API.Features;
 using MEC;
 using System;
 using System.Linq;
@@ -19,9 +19,9 @@ namespace Administration.Commands {
 
             Player player = Player.Get(playerID);
 
-            player?.SendFakeSceneLoading(Exiled.API.Enums.ScenesType.MainMenuRemastered);
+            player?.SendFakeSceneLoading(LabApi.API.Enums.ScenesType.MainMenuRemastered);
 
-            Timing.CallDelayed(5, () => { player?.SendFakeSceneLoading(Exiled.API.Enums.ScenesType.PreLoader); });
+            Timing.CallDelayed(5, () => { player?.SendFakeSceneLoading(LabApi.API.Enums.ScenesType.PreLoader); });
 
             response = "Done";
             return true;

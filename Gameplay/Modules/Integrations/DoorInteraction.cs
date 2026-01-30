@@ -1,7 +1,7 @@
 ﻿using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Exiled.API.Features.Doors;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Features.Doors;
+using LabApi.Events.EventArgs.Player;
 using Interactables.Interobjects.DoorButtons;
 using Interactables.Interobjects.DoorUtils;
 using UnityEngine;
@@ -14,12 +14,12 @@ namespace Gameplay.Modules.Integrations {
         private float lTime = 5f;
 
         public override void OnEnable() {
-            Exiled.Events.Handlers.Player.Shot += Shoot;
+            LabApi.Events.Handlers.Player.Shot += Shoot;
             base.OnEnable();
         }
 
         public override void OnDisable() {
-            Exiled.Events.Handlers.Player.Shot -= Shoot;
+            LabApi.Events.Handlers.Player.Shot -= Shoot;
             base.OnDisable();
         }
 
@@ -28,7 +28,7 @@ namespace Gameplay.Modules.Integrations {
             if (raycastHit.transform.gameObject.GetComponentInParent<BasicDoorButton>() is BasicDoorButton button) {
                 Door door = Door.Get(button.GetComponentInParent<DoorVariant>());
                 if (!door.IsKeycardDoor && !door.IsLocked && !door.IsElevator) {
-                    door.IsOpen = !door.IsOpen; door.Lock(lTime, Exiled.API.Enums.DoorLockType.AdminCommand);
+                    door.IsOpen = !door.IsOpen; door.Lock(lTime, LabApi.API.Enums.DoorLockType.AdminCommand);
                     ev.Player.ShowHitMarker(0.5f);
                 }
             }

@@ -1,4 +1,4 @@
-﻿using Exiled.API.Interfaces;
+﻿using LabApi.API.Interfaces;
 
 namespace UI {
     public class Config : IConfig {

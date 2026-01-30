@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Exiled.CustomItems.API.Features;
 using PlayerRoles;
 
 namespace Corwarx_Project.Features.RoleSystem.Containers {

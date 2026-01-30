@@ -1,4 +1,4 @@
-﻿using Exiled.API.Interfaces;
+﻿using LabApi.API.Interfaces;
 using System.ComponentModel;
 
 namespace Gameplay {

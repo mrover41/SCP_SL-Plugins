@@ -1,6 +1,6 @@
 using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Features;
+using LabApi.Events.EventArgs.Player;
 using UnityEngine;
 
 namespace Corwarx_Roles.Roles.InstanceComponents {
@@ -9,12 +9,12 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
         }
 
         public override void OnAdd() {
-            Exiled.Events.Handlers.Player.UsedItem += OnUsingItem;
+            LabApi.Events.Handlers.Player.UsedItem += OnUsingItem;
             base.OnAdd();
         }
 
         public override void OnRemove() {
-            Exiled.Events.Handlers.Player.UsedItem -= OnUsingItem;
+            LabApi.Events.Handlers.Player.UsedItem -= OnUsingItem;
             base.OnRemove();
         }
 

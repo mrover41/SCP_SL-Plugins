@@ -1,7 +1,7 @@
 using Corwarx_Project.Features.RoleSystem.BaseClass;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Features;
+using LabApi.Events.EventArgs.Player;
 using UnityEngine;
 
 namespace Corwarx_Roles.Roles.InstanceComponents {
@@ -10,12 +10,12 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
         }
 
         public override void OnAdd() {
-            Exiled.Events.Handlers.Player.Hurt += OnHurt;
+            LabApi.Events.Handlers.Player.Hurt += OnHurt;
             base.OnAdd();
         }
 
         public override void OnRemove() {
-            Exiled.Events.Handlers.Player.Hurt -= OnHurt;
+            LabApi.Events.Handlers.Player.Hurt -= OnHurt;
             base.OnRemove();
         }
 

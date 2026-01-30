@@ -2,7 +2,7 @@
 using Corwarx_Project.Events.Args.Administration;
 using System.IO;
 using System.Collections.Generic;
-using Exiled.API.Features;
+using LabApi.API.Features;
 using System;
 using Administration.Dat;
 
@@ -65,7 +65,7 @@ namespace Administration.WarnSystem {
                 int questIndex = line.IndexOf('?');
 
                 if (exclIndex == -1 || questIndex == -1 || exclIndex > questIndex) {
-                    Log.Error("формат файла сломан");
+                    Logger.Error("формат файла сломан");
                     continue;
                 }
 

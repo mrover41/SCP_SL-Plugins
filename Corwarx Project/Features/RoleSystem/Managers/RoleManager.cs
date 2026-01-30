@@ -5,7 +5,8 @@ using System.Reflection;
 using Corwarx_Project.Features.RoleSystem.Attributies;
 using Corwarx_Project.Features.RoleSystem.BaseClass;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
-using Exiled.API.Features;
+using LabApi.Features.Console;
+using LabApi.Features.Wrappers;
 
 namespace Corwarx_Project.Features.RoleSystem.Managers {
     public static class RoleManager {
@@ -16,7 +17,7 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             foreach (Type type in asm.GetTypes().Where(t => t.GetCustomAttribute<LoadRoleAttribute>() != null)) {
                 Roles.Add(Activator.CreateInstance(type) as RoleBase);
                 
-                Log.Info($"Registered role {type.Name}");
+                Logger.Info($"Registered role {type.Name}");
             }
         }
 

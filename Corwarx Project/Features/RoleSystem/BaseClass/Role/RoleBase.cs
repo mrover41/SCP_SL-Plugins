@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using Corwarx_Project.Features.RoleSystem.BaseClass.Spawn;
 using Corwarx_Project.Features.RoleSystem.Containers;
-using Exiled.API.Features;
-using Exiled.CustomItems.API.Features;
+using LabApi.Features.Wrappers;
 
 namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
     public abstract class RoleBase {

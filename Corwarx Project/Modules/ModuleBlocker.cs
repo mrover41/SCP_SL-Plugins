@@ -2,7 +2,7 @@
 using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Events.Args.Modules;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Exiled.API.Features;
+using LabApi.API.Features;
 
 namespace Corwarx_Project.Modules {
     [LoadModule]
@@ -24,7 +24,7 @@ namespace Corwarx_Project.Modules {
             if (!Loader.Instance.Config.BlackListModulesNameof.Contains(nameof(ev.Module))) return;
             ev.IsAllowed = false;
 
-            Log.Debug($"Module {ev.Module.Name} is blocked from being enabled by the Module System.");
+            Logger.Debug($"Module {ev.Module.Name} is blocked from being enabled by the Module System.");
         }
     }
 }

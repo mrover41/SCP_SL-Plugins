@@ -1,5 +1,5 @@
 ﻿using CommandSystem;
-using Exiled.API.Features;
+using LabApi.API.Features;
 using System;
 using System.Linq;
 using System.Text;

@@ -1,6 +1,6 @@
 ﻿using Corwarx_Project.Events.Handles;
 using Corwarx_Project.Features.ModuleSystem.Manager;
-using Exiled.API.Features;
+using LabApi.API.Features;
 
 namespace Administration {
     public class Loader : Plugin<Config> {

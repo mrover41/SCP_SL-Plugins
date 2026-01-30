@@ -1,6 +1,6 @@
 ﻿using Corwarx_Project.Events.Args.Plugin;
 using Corwarx_Project.Features.ModuleSystem.Manager;
-using Exiled.API.Features;
+using LabApi.API.Features;
 using System.Reflection;
 
 namespace UI {

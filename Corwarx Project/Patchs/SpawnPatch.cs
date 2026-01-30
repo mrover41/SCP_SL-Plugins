@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Corwarx_Project.Features.RoleSystem.Managers;
-using Exiled.API.Enums;
-using Exiled.API.Features;
+using LabApi.API.Enums;
+using LabApi.API.Features;
 using HarmonyLib;
 using MEC;
 using PlayerRoles;

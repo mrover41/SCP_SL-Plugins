@@ -2,10 +2,13 @@
 using Corwarx_Project.Features.Components.PlayerComponents;
 using Corwarx_Project.Features.Components.SCP049Components;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Features.Wrappers;
 using PlayerRoles;
 using UnityEngine;
+
+using Logger = LabApi.Features.Console.Logger;
+using Object = UnityEngine.Object;
 
 namespace Corwarx_Project.Modules {
     [LoadModule]
@@ -13,19 +16,19 @@ namespace Corwarx_Project.Modules {
         public override string Name => "Mono Loader";
 
         public override void OnEnable() {
-            Log.Debug($"[MonoLoad] Enabled module: {Name} (ID: {Id})");
-            Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;
+            Logger.Debug($"[MonoLoad] Enabled module: {Name} (ID: {Id})");
+            LabApi.Events.Handlers.PlayerEvents.ChangingRole += OnChangingRole;
             base.OnEnable();
         }
 
         public override void OnDisable() {
-            Log.Debug($"[MonoLoad] Disabled module: {Name} (ID: {Id})");
-            Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;
+            Logger.Debug($"[MonoLoad] Disabled module: {Name} (ID: {Id})");
+            LabApi.Events.Handlers.PlayerEvents.ChangingRole -= OnChangingRole;
             base.OnDisable();
         }
 
-        private void OnChangingRole(ChangingRoleEventArgs ev) {
-            Log.Debug($"[MonoLoad] Handling role change for {ev.Player.Nickname} ({ev.Player.Role}) → {ev.NewRole}");
+        private void OnChangingRole(PlayerChangingRoleEventArgs ev) {
+            Logger.Debug($"[MonoLoad] Handling role change for {ev.Player.Nickname} ({ev.Player.Role}) → {ev.NewRole}");
 
             RemoveComponent<PlayerMovement>(ev.Player);
             RemoveComponent<SCP049Component>(ev.Player);
@@ -40,14 +43,14 @@ namespace Corwarx_Project.Modules {
 
         private void AddComponent<T>(Player player) where T : Component {
             Component added = player.GameObject.AddComponent<T>();
-            Log.Debug($"[MonoLoad] Added component: {typeof(T).Name} to {player.Nickname}");
+            Logger.Debug($"[MonoLoad] Added component: {typeof(T).Name} to {player.Nickname}");
         }
 
 
         private void RemoveComponent<T>(Player player) where T : Component {
             if (player.GameObject.TryGetComponent(out T existing)) {
                 Object.Destroy(existing);
-                Log.Debug($"[MonoLoad] Removed component: {typeof(T).Name} from {player.Nickname}");
+                Logger.Debug($"[MonoLoad] Removed component: {typeof(T).Name} from {player.Nickname}");
             }
         }
     }

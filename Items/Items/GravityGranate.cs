@@ -1,9 +1,9 @@
-﻿using Exiled.API.Features.Attributes;
-using Exiled.API.Features.Pickups;
-using Exiled.API.Features.Spawn;
-using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Map;
-using Exiled.Events.EventArgs.Player;
+﻿using LabApi.API.Features.Attributes;
+using LabApi.API.Features.Pickups;
+using LabApi.API.Features.Spawn;
+using LabApi.CustomItems.API.Features;
+using LabApi.Events.EventArgs.Map;
+using LabApi.Events.EventArgs.Player;
 using MEC;
 using UnityEngine;
 
@@ -21,11 +21,11 @@ namespace Items.Items {
         public override Vector3 Scale { get; set; } = new Vector3(2, 5, 2);
         public override SpawnProperties SpawnProperties { get; set; } = null;
         protected override void SubscribeEvents() {
-            Exiled.Events.Handlers.Player.ChangedItem += Select_Info;
+            LabApi.Events.Handlers.Player.ChangedItem += Select_Info;
             base.SubscribeEvents();
         }
         protected override void UnsubscribeEvents() {
-            Exiled.Events.Handlers.Player.ChangedItem -= Select_Info;
+            LabApi.Events.Handlers.Player.ChangedItem -= Select_Info;
             base.UnsubscribeEvents();
         }
         void Select_Info(ChangedItemEventArgs ev) {

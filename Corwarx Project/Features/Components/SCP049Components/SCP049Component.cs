@@ -1,6 +1,6 @@
 ﻿using Corwarx_Project.Enums;
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Features;
+using LabApi.Events.EventArgs.Player;
 using UnityEngine;
 
 namespace Corwarx_Project.Features.Components.SCP049Components {
@@ -19,14 +19,14 @@ namespace Corwarx_Project.Features.Components.SCP049Components {
         }
 
         void Start() {
-            Exiled.Events.Handlers.Player.Hurting += OnDamage;
+            LabApi.Events.Handlers.Player.Hurting += OnDamage;
             Player = Player.Get(gameObject);
-            Log.Debug($"SCP049Component started for {Player.Nickname} ({Player.UserId})");
+            Logger.Debug($"SCP049Component started for {Player.Nickname} ({Player.UserId})");
         }
 
         void OnDestroy() {
-            Exiled.Events.Handlers.Player.Hurting -= OnDamage;
-            Log.Debug($"SCP049Component destroyed for {Player.Nickname} ({Player.UserId})");
+            LabApi.Events.Handlers.Player.Hurting -= OnDamage;
+            Logger.Debug($"SCP049Component destroyed for {Player.Nickname} ({Player.UserId})");
         }
 
         void ChangeState(SCP049Stats newStat, SCP049Stats oldStat) {
@@ -37,13 +37,13 @@ namespace Corwarx_Project.Features.Components.SCP049Components {
             switch (newStat) {
                 case SCP049Stats.Cuffed: Player.Handcuff(); break;
             }
-            Log.Debug($"SCP049Component: {Player.Nickname} ({Player.UserId}) changed state from {oldStat} to {newStat}");
+            Logger.Debug($"SCP049Component: {Player.Nickname} ({Player.UserId}) changed state from {oldStat} to {newStat}");
         }
 
         private void OnDamage(HurtingEventArgs ev) {
             if (ev.Attacker != Player) return;
             if (_stats == SCP049Stats.Cuffed) ev.IsAllowed = false;
-            Log.Debug($"SCP049Component: {Player.Nickname} ({Player.UserId}) is being hurt by {ev.Attacker.Nickname} ({ev.Attacker.UserId}) with damage {ev.Amount}");
+            Logger.Debug($"SCP049Component: {Player.Nickname} ({Player.UserId}) is being hurt by {ev.Attacker.Nickname} ({ev.Attacker.UserId}) with damage {ev.Amount}");
         }
     }
 }

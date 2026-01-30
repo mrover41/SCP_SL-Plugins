@@ -1,8 +1,8 @@
 ﻿using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Exiled.API.Features;
-using Exiled.API.Features.Pickups;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Features;
+using LabApi.API.Features.Pickups;
+using LabApi.Events.EventArgs.Player;
 using InventorySystem.Items.Pickups;
 using UnityEngine;
 
@@ -12,12 +12,12 @@ namespace Gameplay.Modules.Integrations {
         public override string Name => "Item Integration";
 
         public override void OnEnable() {
-            Exiled.Events.Handlers.Player.Shot += Interact;
+            LabApi.Events.Handlers.Player.Shot += Interact;
             base.OnEnable();
         }
 
         public override void OnDisable() {
-            Exiled.Events.Handlers.Player.Shot += Interact;
+            LabApi.Events.Handlers.Player.Shot += Interact;
             base.OnDisable();
         }
 
@@ -30,11 +30,11 @@ namespace Gameplay.Modules.Integrations {
                     switch (pickup.Type) {
                         case ItemType.GrenadeFlash:
                             pickup.Destroy();
-                            Map.Explode(pickup.Position, Exiled.API.Enums.ProjectileType.Flashbang, pickup.PreviousOwner);
+                            Map.Explode(pickup.Position, LabApi.API.Enums.ProjectileType.Flashbang, pickup.PreviousOwner);
                             break;
                         case ItemType.GrenadeHE:
                             pickup.Destroy();
-                            Map.Explode(pickup.Position, Exiled.API.Enums.ProjectileType.FragGrenade, pickup.PreviousOwner);
+                            Map.Explode(pickup.Position, LabApi.API.Enums.ProjectileType.FragGrenade, pickup.PreviousOwner);
                             break;
                         default:
                             pickup.Rigidbody.AddForceAtPosition(d * 200, hitInfo.point);

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using CommandSystem;
 using Corwarx_Project.Features.RoleSystem.Managers;
-using Exiled.API.Features;
+using LabApi.API.Features;
 
 namespace Corwarx_Roles.Commands {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]

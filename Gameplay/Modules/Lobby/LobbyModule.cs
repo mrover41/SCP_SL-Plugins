@@ -1,8 +1,8 @@
 ﻿using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Exiled.API.Enums;
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Enums;
+using LabApi.API.Features;
+using LabApi.Events.EventArgs.Player;
 using PlayerRoles;
 using UnityEngine;
 
@@ -10,16 +10,16 @@ namespace Gameplay.Modules.Lobby {
     [LoadModule]
     internal class LobbyModule : ModuleBase {
         public override void OnEnable() {
-            Log.Info("Module");
+            Logger.Info("Module");
 
-            Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingForPlayers;
-            Exiled.Events.Handlers.Player.Verified += OnVerified;
+            LabApi.Events.Handlers.Server.WaitingForPlayers += OnWaitingForPlayers;
+            LabApi.Events.Handlers.Player.Verified += OnVerified;
             base.OnEnable();
         }
         
         public override void OnDisable() {
-            Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingForPlayers;
-            Exiled.Events.Handlers.Player.Verified -= OnVerified;
+            LabApi.Events.Handlers.Server.WaitingForPlayers -= OnWaitingForPlayers;
+            LabApi.Events.Handlers.Player.Verified -= OnVerified;
             base.OnDisable();
         }
 
@@ -35,7 +35,7 @@ namespace Gameplay.Modules.Lobby {
         }
 
         private void OnRoundStarted() {
-            Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
+            LabApi.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using Exiled.API.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Corwarx_Project.Core {
-    public class Config : IConfig {
+    public class Config {
         [Description("Plugin config")]
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = false;
@@ -22,4 +21,5 @@ namespace Corwarx_Project.Core {
             "ExampleModule_2",
         };
     }
+
 }

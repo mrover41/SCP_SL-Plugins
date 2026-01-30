@@ -29,32 +29,32 @@
     <Reference Include="CustomItems">
       <HintPath>..\..\..\..\Desktop\Temp\CustomItems.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.API">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.API.dll</HintPath>
+    <Reference Include="LabApi.API">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.API.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CreditTags">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.CreditTags.dll</HintPath>
+    <Reference Include="LabApi.CreditTags">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.CreditTags.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CustomItems">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.CustomItems.dll</HintPath>
+    <Reference Include="LabApi.CustomItems">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.CustomItems.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CustomRoles">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.CustomRoles.dll</HintPath>
+    <Reference Include="LabApi.CustomRoles">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.CustomRoles.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Events">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.Events.dll</HintPath>
+    <Reference Include="LabApi.Events">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.Events.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Loader">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.Loader.dll</HintPath>
+    <Reference Include="LabApi.Loader">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.Loader.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Permissions">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.Permissions.dll</HintPath>
+    <Reference Include="LabApi.Permissions">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.Permissions.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Updater">
-      <HintPath>..\..\..\..\Desktop\Temp\Exiled.Updater.dll</HintPath>
+    <Reference Include="LabApi.Updater">
+      <HintPath>..\..\..\..\Desktop\Temp\LabApi.Updater.dll</HintPath>
     </Reference>
     <Reference Include="HintServiceMeow">
-      <HintPath>..\..\..\..\Desktop\Temp\HintServiceMeow-Exiled.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Temp\HintServiceMeow-LabApi.dll</HintPath>
     </Reference>
     <Reference Include="MapEditorReborn">
       <HintPath>..\..\..\..\Desktop\Temp\MapEditorReborn.dll</HintPath>

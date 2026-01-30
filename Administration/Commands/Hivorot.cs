@@ -1,7 +1,7 @@
 ﻿using CommandSystem;
 using Corwarx_Project.Features.UpdateInjector.Attributies;
-using Exiled.API.Features;
-using Exiled.API.Features.Pickups;
+using LabApi.API.Features;
+using LabApi.API.Features.Pickups;
 using MEC;
 using System;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace Administration.Commands {
 
         [Update]
         private static void Phys() {
-            Log.Debug("I`M UPDATE SUKA");
+            Logger.Debug("I`M UPDATE SUKA");
             if (player == null)
                 return;
             foreach (Pickup pickup in Pickup.List.Where(x => Vector3.Distance(x.Transform.position, player.Position) < 10)) {

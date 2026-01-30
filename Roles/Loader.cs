@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Corwarx_Project.Features.RoleSystem.Managers;
-using Exiled.API.Features;
+using LabApi.API.Features;
 using MEC;
 
 namespace Corwarx_Roles {

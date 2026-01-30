@@ -1,5 +1,5 @@
 ﻿using Corwarx_Project.Features.ModuleSystem.Manager;
-using Exiled.API.Features;
+using LabApi.API.Features;
 using HarmonyLib;
 using Plugin = Corwarx_Project.Events.Handles.Plugin;
 

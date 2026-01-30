@@ -1,7 +1,7 @@
 ﻿using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Events.Args.Administration;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Exiled.API.Features;
+using LabApi.API.Features;
 
 namespace Administration.Modules {
     [LoadModule]

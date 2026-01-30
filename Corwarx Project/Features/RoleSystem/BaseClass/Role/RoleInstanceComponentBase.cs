@@ -1,4 +1,4 @@
-using Exiled.API.Features;
+using LabApi.Features.Wrappers;
 
 namespace Corwarx_Project.Features.RoleSystem.BaseClass.Role {
     public abstract class RoleInstanceComponentBase {

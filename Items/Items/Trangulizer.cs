@@ -1,15 +1,15 @@
-﻿using Exiled.API.Enums;
-using Exiled.API.Features;
-using Exiled.API.Features.Spawn;
-using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Player;
+﻿using LabApi.API.Enums;
+using LabApi.API.Features;
+using LabApi.API.Features.Spawn;
+using LabApi.CustomItems.API.Features;
+using LabApi.Events.EventArgs.Player;
 using MEC;
 using PlayerRoles;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Items.Items {
-    [Exiled.API.Features.Attributes.CustomItem(ItemType.GunCOM15)]
+    [LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM15)]
     public class Trangulizer : CustomWeapon {
         public override string Description { get; set; } = "Обезвреживает об`екты";
         public override float Weight { get; set; } = 2f;
@@ -21,15 +21,15 @@ namespace Items.Items {
 
         protected override void SubscribeEvents() {
             base.SubscribeEvents();
-            Exiled.Events.Handlers.Player.Shot += Sh;
-            Exiled.Events.Handlers.Player.ChangedItem += Select_Info;
-            Exiled.Events.Handlers.Player.ReloadingWeapon += Reload;
+            LabApi.Events.Handlers.Player.Shot += Sh;
+            LabApi.Events.Handlers.Player.ChangedItem += Select_Info;
+            LabApi.Events.Handlers.Player.ReloadingWeapon += Reload;
         }
     
         protected override void UnsubscribeEvents() {
-            Exiled.Events.Handlers.Player.Shot -= Sh;
-            Exiled.Events.Handlers.Player.ChangedItem -= Select_Info;
-            Exiled.Events.Handlers.Player.ReloadingWeapon -= Reload;
+            LabApi.Events.Handlers.Player.Shot -= Sh;
+            LabApi.Events.Handlers.Player.ChangedItem -= Select_Info;
+            LabApi.Events.Handlers.Player.ReloadingWeapon -= Reload;
             base.UnsubscribeEvents();
         }
         void Select_Info(ChangedItemEventArgs ev) { 
@@ -50,7 +50,7 @@ namespace Items.Items {
             ev.CanHurt = false;
         }
 
-        private IEnumerator<float> Delay(Exiled.API.Features.Player player) {
+        private IEnumerator<float> Delay(LabApi.API.Features.Player player) {
             player.CurrentItem = null;
             player.Inventory.enabled = false;
             player.Scale = new Vector3(0.5f, 0.5f, 0.5f);

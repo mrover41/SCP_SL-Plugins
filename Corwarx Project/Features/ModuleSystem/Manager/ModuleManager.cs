@@ -1,6 +1,6 @@
 ﻿using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
-using Exiled.API.Features;
+using LabApi.API.Features;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace Corwarx_Project.Features.ModuleSystem.Manager {
                     Corwarx_Project.Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
                 }
             } else {
-                Log.Error($"Module {module.Name} with ID {module.Id} is null or already registered.");
+                Logger.Error($"Module {module.Name} with ID {module.Id} is null or already registered.");
             }
         }
 
@@ -71,7 +71,7 @@ namespace Corwarx_Project.Features.ModuleSystem.Manager {
                 module.IsEnabled = true;
                 Corwarx_Project.Events.Handles.Module.OnEnabledModuleEventArg(new Events.Args.Modules.EnabledModuleEventArg(module));
             } else {
-                Log.Error($"Module with ID {id} not found.");
+                Logger.Error($"Module with ID {id} not found.");
             }
         }
 
@@ -86,7 +86,7 @@ namespace Corwarx_Project.Features.ModuleSystem.Manager {
                 module.IsEnabled = false;
                 Corwarx_Project.Events.Handles.Module.OnDisableModuleEventArg(new Events.Args.Modules.DisableModuleEventArg(module));
             } else {
-                Log.Error($"Module with ID {id} not found.");
+                Logger.Error($"Module with ID {id} not found.");
             }
         }
 
@@ -106,7 +106,7 @@ namespace Corwarx_Project.Features.ModuleSystem.Manager {
                 Modules.Remove(module);
                 Corwarx_Project.Events.Handles.Module.OnUnregisterModuleEventArg(new Events.Args.Modules.UnregisterModuleEventArg(module));
             } else {
-                Log.Error($"Module {module.Name} with ID {module.Id} is null or not registered.");
+                Logger.Error($"Module {module.Name} with ID {module.Id} is null or not registered.");
             }
         }
 
@@ -116,7 +116,7 @@ namespace Corwarx_Project.Features.ModuleSystem.Manager {
                 Modules.Remove(module);
                 Corwarx_Project.Events.Handles.Module.OnUnregisterModuleEventArg(new Events.Args.Modules.UnregisterModuleEventArg(module));
             } else {
-                Log.Error($"Module {module.Name} with ID {module.Id} is null or not registered.");
+                Logger.Error($"Module {module.Name} with ID {module.Id} is null or not registered.");
             }
         }
     }

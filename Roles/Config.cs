@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Corwarx_Project.Features.RoleSystem.Containers;
-using Exiled.API.Interfaces;
+using LabApi.API.Interfaces;
 using Items.Items;
 using PlayerRoles;
 

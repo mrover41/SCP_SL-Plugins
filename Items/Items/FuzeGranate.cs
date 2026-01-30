@@ -1,9 +1,9 @@
-﻿using Exiled.API.Features.Attributes;
-using Exiled.API.Features.Pickups;
-using Exiled.API.Features.Spawn;
-using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Map;
-using Exiled.Events.EventArgs.Player;
+﻿using LabApi.API.Features.Attributes;
+using LabApi.API.Features.Pickups;
+using LabApi.API.Features.Spawn;
+using LabApi.CustomItems.API.Features;
+using LabApi.Events.EventArgs.Map;
+using LabApi.Events.EventArgs.Player;
 using InventorySystem.Items.Usables.Scp244;
 using MEC;
 using PlayerRoles;
@@ -24,15 +24,15 @@ namespace Items.Items {
         public override SpawnProperties SpawnProperties { get; set; } = null;
         List<Vector3> Granates = new List<Vector3>();
         protected override void SubscribeEvents() {
-            Exiled.Events.Handlers.Player.Hurting += Hut;
-            Exiled.Events.Handlers.Player.Spawned += Spawner;
-            Exiled.Events.Handlers.Player.ChangedItem += Select_Info;
+            LabApi.Events.Handlers.Player.Hurting += Hut;
+            LabApi.Events.Handlers.Player.Spawned += Spawner;
+            LabApi.Events.Handlers.Player.ChangedItem += Select_Info;
             base.SubscribeEvents();
         }
         protected override void UnsubscribeEvents() {
-            Exiled.Events.Handlers.Player.Hurting -= Hut;
-            Exiled.Events.Handlers.Player.Spawned -= Spawner;
-            Exiled.Events.Handlers.Player.ChangedItem -= Select_Info;
+            LabApi.Events.Handlers.Player.Hurting -= Hut;
+            LabApi.Events.Handlers.Player.Spawned -= Spawner;
+            LabApi.Events.Handlers.Player.ChangedItem -= Select_Info;
             base.UnsubscribeEvents();
         }
         void Select_Info(ChangedItemEventArgs ev) { 
@@ -48,7 +48,7 @@ namespace Items.Items {
             }
         }
         void Hut(HurtingEventArgs ev) { 
-            if (ev.DamageHandler.Type == Exiled.API.Enums.DamageType.Hypothermia) {
+            if (ev.DamageHandler.Type == LabApi.API.Enums.DamageType.Hypothermia) {
                 foreach (Vector3 vector in Granates) { 
                     if (Vector3.Distance(ev.Player.Position, vector) <= 5) {
                         ev.IsAllowed = false;

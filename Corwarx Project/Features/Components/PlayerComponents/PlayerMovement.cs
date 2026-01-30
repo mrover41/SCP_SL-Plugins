@@ -1,4 +1,4 @@
-﻿using Exiled.API.Features;
+﻿using LabApi.API.Features;
 using UnityEngine;
 namespace Corwarx_Project.Features.Components.PlayerComponents {
     public class PlayerMovement : MonoBehaviour {

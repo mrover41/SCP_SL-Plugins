@@ -2,28 +2,26 @@ using System.Linq;
 using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
 using Corwarx_Project.Features.RoleSystem.Managers;
-using Exiled.API.Enums;
-using Exiled.API.Extensions;
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Features.Wrappers;
 using PlayerRoles;
 
 namespace Corwarx_Project.Modules {
     [LoadModule]
     public class RoleManager : ModuleBase {
         public override void OnEnable() {
-            Exiled.Events.Handlers.Player.Left += OnDisconnect;
-            Exiled.Events.Handlers.Server.RoundStarted += OmStartRound;
+            LabApi.Events.Handlers.PlayerEvents.Left += OnDisconnect;
+            LabApi.Events.Handlers.ServerEvents.RoundStarted += OmStartRound;
             base.OnEnable();
         }
 
         public override void OnDisable() {
-            Exiled.Events.Handlers.Player.Left -= OnDisconnect;
-            Exiled.Events.Handlers.Server.RoundStarted -= OmStartRound;
+            LabApi.Events.Handlers.PlayerEvents.Left -= OnDisconnect;
+            LabApi.Events.Handlers.ServerEvents.RoundStarted -= OmStartRound;
             base.OnDisable();
         }
 
-        private void OnDisconnect(LeftEventArgs ev) {
+        private void OnDisconnect(PlayerLeftEventArgs ev) {
             ev.Player.RemoveRole();
         }
 
@@ -31,9 +29,9 @@ namespace Corwarx_Project.Modules {
             foreach (Player player in  Player.List) {
                 if (player == null) return;
            
-                Faction faction = player.Role.Team.GetFaction();
+                Faction faction = player.Team.GetFaction();
            
-                SpawnManager.SpawnPlayer(player, SpawnReason.RoundStart, faction);
+                SpawnManager.SpawnPlayer(player, RoleChangeReason.RoundStart, faction);
             }
         }
     }

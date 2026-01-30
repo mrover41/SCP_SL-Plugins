@@ -1,11 +1,11 @@
 ﻿using CustomPlayerEffects;
 using CustomRendering;
-using Exiled.API.Enums;
-using Exiled.API.Extensions;
-using Exiled.API.Features.Attributes;
-using Exiled.API.Features.Spawn;
-using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Player;
+using LabApi.API.Enums;
+using LabApi.API.Extensions;
+using LabApi.API.Features.Attributes;
+using LabApi.API.Features.Spawn;
+using LabApi.CustomItems.API.Features;
+using LabApi.Events.EventArgs.Player;
 using MEC;
 using System.Collections.Generic;
 
@@ -34,15 +34,15 @@ namespace Items.Items {
             }
         }
         };
-        List<Exiled.API.Features.Player> playersList = new List<Exiled.API.Features.Player>();
+        List<LabApi.API.Features.Player> playersList = new List<LabApi.API.Features.Player>();
         protected override void SubscribeEvents() {
-            Exiled.Events.Handlers.Player.UsingItemCompleted += OnUsed;
-            Exiled.Events.Handlers.Player.Hurting += Damage;
+            LabApi.Events.Handlers.Player.UsingItemCompleted += OnUsed;
+            LabApi.Events.Handlers.Player.Hurting += Damage;
             base.SubscribeEvents();
         }
         protected override void UnsubscribeEvents() {
-            Exiled.Events.Handlers.Player.UsingItemCompleted -= OnUsed;
-            Exiled.Events.Handlers.Player.Hurting -= Damage;
+            LabApi.Events.Handlers.Player.UsingItemCompleted -= OnUsed;
+            LabApi.Events.Handlers.Player.Hurting -= Damage;
             base.UnsubscribeEvents();
         }
         void Damage(HurtingEventArgs ev) { 
