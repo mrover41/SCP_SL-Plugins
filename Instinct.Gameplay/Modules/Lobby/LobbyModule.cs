@@ -29,7 +29,7 @@ namespace Instinct.Gameplay.Modules.Lobby {
             if (Round.IsRoundStarted) 
                 return;
             ev.Player.SetRole(RoleTypeId.Tutorial);
-            ev.Player.Position = Room.Get(MapGeneration.RoomName.EzIntercom).FirstOrDefault().Transform.position + new Vector3(-4.3f, -4.86f, -2.7f);
+            ev.Player.Position = Room.Get(MapGeneration.RoomName.EzIntercom).FirstOrDefault()!.Transform.position + new Vector3(Loader.Instance!.Config!.X, Loader.Instance!.Config!.Y, Loader.Instance!.Config!.Z);
         }
 
         private void OnRoundStarted() {

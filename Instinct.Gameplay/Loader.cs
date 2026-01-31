@@ -4,7 +4,7 @@ using LabApi.Features;
 using LabApi.Loader.Features.Plugins;
 
 namespace Instinct.Gameplay {
-    public class Loader : Plugin {
+    public class Loader : Plugin<Config> {
         public override string Name => "Instinct.Gameplay";
         public override string Description => "хз, не придумал";
         public override string Author => "Mr_Over41 && everyofflineuser && wexels.dev";

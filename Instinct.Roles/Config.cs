@@ -29,8 +29,5 @@ namespace Instinct.Roles {
             RoleTypeId = RoleTypeId.Scientist,
             Team = Team.Scientists
         };
-
-        public bool IsEnabled { get; set; } = true;
-        public bool Debug { get; set; }
     }
 }
