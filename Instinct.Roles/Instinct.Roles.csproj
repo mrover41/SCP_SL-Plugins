@@ -9,7 +9,6 @@
 
 	<ItemGroup>
     <ProjectReference Include="..\Instinct.Core\Instinct.Core.csproj" />
-    <ProjectReference Include="..\Instinct.Items\Instinct.Items.csproj" />
   </ItemGroup>
 
   <ItemGroup>

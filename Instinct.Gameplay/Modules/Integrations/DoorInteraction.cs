@@ -1,11 +1,12 @@
-﻿using Instinct.Core.Features.ModuleSystem.BaseClass;
+﻿using Instinct.Core.Features.ModuleSystem.Attributies;
+using Instinct.Core.Features.ModuleSystem.BaseClass;
 using Interactables.Interobjects.DoorButtons;
 using Interactables.Interobjects.DoorUtils;
 using LabApi.Events.Arguments.PlayerEvents;
 using UnityEngine;
 
 namespace Instinct.Gameplay.Modules.Integrations {
-    //[LoadModule]
+    [LoadModule]
     internal class DoorInteraction : ModuleBase {
         private float _lTime = 5f;
 

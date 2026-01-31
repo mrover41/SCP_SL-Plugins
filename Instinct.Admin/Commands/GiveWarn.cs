@@ -16,7 +16,7 @@ namespace Instinct.Admin.Commands {
                 return false;
             }
             
-            Player? player = Player.Get(arguments.First());
+            Player? player = Player.Get(int.Parse(arguments.First()));
             if (player is not null) {
                 WarnManager.AddWarn(player.UserId, arguments.Last(), player.Nickname, player.PlayerId, out response);
                 return true;

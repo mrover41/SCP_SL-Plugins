@@ -27,9 +27,8 @@ namespace Instinct.Admin.Commands {
             return true;
         }
 
-        //[Update]
+        [Update]
         private static void Phys() {
-            Logger.Debug("I`M UPDATE SUKA");
             foreach (Pickup pickup in Pickup.List.Where(x => _player != null && Vector3.Distance(x.Transform.position, _player.Position) < 10)) {
                 if (_player == null) continue;
                 Vector3 pos = _player.Position - pickup.Position;

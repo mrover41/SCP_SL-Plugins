@@ -12,8 +12,8 @@ namespace Instinct.Gameplay.Patchs {
             if (Round.IsRoundInProgress) return true;
             
             if (!IntercomDisplay.TrySetDisplay(
-                    $"<size=200><color=#{HColor(0.5f)}> ◀✅▶ До начала раунда: {(RoundStart.singleton.NetworkTimer < 1 ? "Начинается" : RoundStart.singleton.NetworkTimer.ToString())}\n" +
-                    $"Количество игроков: {Player.List.Count} </color></size>")) {
+                    $"<size=200><color=#{HColor(0.5f)}> ◀✅▶ До начала раунда: {(RoundStart.singleton.NetworkTimer < 1 ? "Скоро начнется!" : RoundStart.singleton.NetworkTimer.ToString())}\n" +
+                    $"Количество игроков: {Player.List.Where(x => x.IsPlayer)} </color></size>")) {
                 Logger.Error("тута ощьиибочкааа (интерком текст не поставил)");
             }
             

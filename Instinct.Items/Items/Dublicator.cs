@@ -1,48 +1,53 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Cherry.Core.Enums;
+using Cherry.CustomItems;
+using Cherry.CustomItems.Items;
+using InventorySystem.Items.Firearms.Modules;
+using InventorySystem.Items.Pickups;
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Features.Wrappers;
+using PlayerStatsSystem;
 using UnityEngine;
 
 namespace Instinct.Items.Items {
-    [LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM18)]
-    public class ItemD : CustomWeapon {
-        public override string Description { get; set; } = "Дублює предмети";
-        public override float Weight { get; set; } = 2f;
-        public override string Name { get; set; } = "Дублiкатор";
-        public override uint Id { get; set; } = 122;
-        public override ItemType Type { get; set; } = ItemType.GunCOM18;
-        public override float Damage { get; set; } = 0;
-        public override byte ClipSize { get; set; } = 3;
+    public class ItemD : CustomFirearmBase
+    {
+        public override string CustomItemName { get; set; } = "Дубликатор";
+        public override string Description { get; set; } = "Дублирует предметы";
+        public override float Weight { get; } = 2f;
+        public override ItemType Type { get; } = ItemType.GunCOM18;
+        public override float Damage { get; } = 0;
 
-        protected override void SubscribeEvents() {
-            base.SubscribeEvents();
-            LabApi.Events.Handlers.Player.Shot += Wapon;
-            LabApi.Events.Handlers.Player.ChangedItem += Select_Info;
-            LabApi.Events.Handlers.Player.ReloadingWeapon += Reload;
+        public override void OnRegistered() {
+            base.OnRegistered();
+            LabApi.Events.Handlers.PlayerEvents.ReloadingWeapon += Reload;
         }
 
-        protected override void UnsubscribeEvents() {
-            LabApi.Events.Handlers.Player.Shot -= Wapon;
-            LabApi.Events.Handlers.Player.ChangedItem -= Select_Info;
-            LabApi.Events.Handlers.Player.ReloadingWeapon -= Reload;
-            base.UnsubscribeEvents();
+        public override void OnUnRegistered() {
+            LabApi.Events.Handlers.PlayerEvents.ReloadingWeapon -= Reload;
+            base.OnUnRegistered();
         }
 
-        private void Select_Info(ChangedItemEventArgs ev) { 
-            if (Check(ev.Item)) {
-                ev.Player.Broadcast(4, "<b><color=#FCF7D9>Ви підібрали</color> <color=#00ADAD>Дублікатор</color></b>");
-            }
+        public override void OnChanged(Player player, Item oldItem, Item newItem, bool changedToThisItem)
+        {
+            if (!changedToThisItem) return;
+            
+            player.SendBroadcast("<b><color=#FCF7D9>Ви підібрали</color> <color=#00ADAD>Дублікатор</color></b>", 4);
+            
+            base.OnChanged(player, oldItem, newItem, changedToThisItem);
         }
 
-        private void Wapon(ShotEventArgs ev) {
-            if (!Check(ev.Item)) {
-                return;
-            } if (ev.Firearm.TotalAmmo <= 0) { 
-                ev.Player.RemoveItem(ev.Item);
-                Map.ExplodeEffect(ev.Player.Position, ProjectileType.FragGrenade);
-            } if (ev.Target != null) {
-                ev.CanHurt = false;
-                Hitmarker.SendHitmarkerDirectly(ev.Player.ReferenceHub, 1.5f);
-                Ragdoll.CreateAndSpawn(ev.Target.Role.Type, ev.Target.Nickname, "Душа покинула его убегая от парадоксов", ev.Target.Transform.position, ev.Target.Transform.rotation);
-            } if (Physics.Linecast(ev.Player.CameraTransform.position, ev.RaycastHit.point, out RaycastHit raycastHit)) {
+        public override void OnHurting(Player player, Player attacker, FirearmDamageHandler firearmDamage, bool isAllowedHelper)
+        {
+            if (firearmDamage.Firearm.GetTotalStoredAmmo() <= 0) { 
+                player.RemoveItem(firearmDamage.Firearm);
+                //Map.ExplodeEffect(ev.Player.Position, ProjectileType.FragGrenade);
+            } if (player != null) {
+                isAllowedHelper = false;
+                Hitmarker.SendHitmarkerDirectly(attacker.ReferenceHub, 1.5f);
+                Ragdoll.SpawnRagdoll(player, firearmDamage);
+            } if (Physics.Linecast(player.Camera.position, ev.RaycastHit.point, out RaycastHit raycastHit)) {
                 if (raycastHit.transform.TryGetComponent(out ItemPickupBase itemPickupBase)) {
                     if (itemPickupBase.NetworkInfo.ItemId != ItemType.MicroHID && itemPickupBase.NetworkInfo.ItemId != ItemType.ParticleDisruptor && itemPickupBase.NetworkInfo.ItemId != ItemType.Jailbird) {
                         Pickup.CreateAndSpawn(itemPickupBase.NetworkInfo.ItemId, ev.RaycastHit.point + Vector3.up * 0.5f, default);
@@ -57,6 +62,8 @@ namespace Instinct.Items.Items {
                     }
                 }
             }
+            
+            base.OnHurting(player, attacker, firearmDamage, isAllowedHelper);
         }
 
         private void Reload(ReloadingWeaponEventArgs ev) {

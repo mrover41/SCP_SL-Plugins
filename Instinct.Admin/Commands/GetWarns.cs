@@ -36,12 +36,11 @@ namespace Instinct.Admin.Commands {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response) {
             StringBuilder sb = new();
             if (arguments.Count != 1) { 
-                response = "Usage: GetWarn <playerPlayerID>";
+                response = "Usage: GetWarn <playerID>";
                 return false;
             }
             
-            Player? player = Player.Get(arguments.First());
-            WarnManager.GetWarns(player?.UserId).ForEach(warn => {
+            WarnManager.GetWarns(arguments.First()).ForEach(warn => {
                 sb.AppendLine($"ID: {warn.Id}, Nickname: {warn.Nickname}, Message: {warn.Message}");
             });
             

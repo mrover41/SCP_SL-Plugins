@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\External\cherry\Cherry.CustomItems\Cherry.CustomItems.csproj" />
     <ProjectReference Include="..\Instinct.Core\Instinct.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\libs\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\libs\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Cryptography">
       <HintPath>..\libs\BouncyCastle.Cryptography.dll</HintPath>

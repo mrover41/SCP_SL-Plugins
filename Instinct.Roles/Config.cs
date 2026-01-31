@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Instinct.Items.Items;
+//using Instinct.Items.Items;
 using Instinct.Core.Features.RoleSystem.Containers;
 using PlayerRoles;
 
@@ -23,9 +23,9 @@ namespace Instinct.Roles {
                 ItemType.Medkit,
                 ItemType.Medkit
             },
-            CustomItems = new List<Type> {
-                typeof(Trangulizer)
-            },
+//            CustomItems = new List<Type> {
+ //               typeof(Trangulizer)
+  //          },
             RoleTypeId = RoleTypeId.Scientist,
             Team = Team.Scientists
         };

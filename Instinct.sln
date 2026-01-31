@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Instinct.Items", "Instinct.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Instinct.Admin", "Instinct.Admin\Instinct.Admin.csproj", "{DE844006-1753-4AAD-BFF0-945557F0D8D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cherry.Core", "External\cherry\Cherry.Core\Cherry.Core.csproj", "{03347AA5-48CC-40F7-8D02-EACCFB602110}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cherry.CustomItems", "External\cherry\Cherry.CustomItems\Cherry.CustomItems.csproj", "{1E9EE044-DCA4-47DB-BCFC-9E95B35BE134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{DE844006-1753-4AAD-BFF0-945557F0D8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE844006-1753-4AAD-BFF0-945557F0D8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE844006-1753-4AAD-BFF0-945557F0D8D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03347AA5-48CC-40F7-8D02-EACCFB602110}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{03347AA5-48CC-40F7-8D02-EACCFB602110}.Debug|Any CPU.Build.0 = Debug|x64
+		{1E9EE044-DCA4-47DB-BCFC-9E95B35BE134}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{1E9EE044-DCA4-47DB-BCFC-9E95B35BE134}.Debug|Any CPU.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

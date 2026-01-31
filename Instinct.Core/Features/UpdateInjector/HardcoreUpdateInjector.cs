@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Instinct.Core.Features.UpdateInjector.Attributies;
+using LabApi.Loader.Features.Misc;
+using LabApi.Loader.Features.Plugins;
 using UnityEngine;
 
 namespace Instinct.Core.Features.UpdateInjector;
@@ -11,8 +13,9 @@ public class Updater : MonoBehaviour {
 
     public void Init() {
         Logger.Debug("Updater initialized");
-        foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-            Logger.Debug($"Processing assembly: {assembly.FullName}");
+        foreach (Plugin plugin in LabApi.Loader.PluginLoader.EnabledPlugins) {
+            Logger.Debug($"Processing assembly: {plugin.Name}");
+            plugin.TryGetLoadedAssembly(out Assembly assembly);
             foreach (Type type in assembly.GetTypes()) {
                 foreach (MethodInfo method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).Where(x => x.GetCustomAttribute<UpdateAttribute>() != null)) {
                     Action action = (Action)Delegate.CreateDelegate(typeof(Action), method);

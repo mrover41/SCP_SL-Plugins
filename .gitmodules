@@ -1,0 +1,3 @@
+[submodule "External/cherry"]
+	path = External/cherry
+	url = git@github.com:wexelsdev/cherry.git
