@@ -10,14 +10,14 @@ namespace Instinct.Gameplay.Modules.Lobby {
         public override void OnEnable() {
             Logger.Info("Module");
 
-            LabApi.Events.Handlers.ServerEvents.WaitingForPlayers += OnWaitingForPlayers;
-            LabApi.Events.Handlers.PlayerEvents.Joined += OnJoined;
+            LabApi.Events.Handlers.ServerEvents.WaitingForPlayers += this.OnWaitingForPlayers;
+            LabApi.Events.Handlers.PlayerEvents.Joined += this.OnJoined;
             base.OnEnable();
         }
         
         public override void OnDisable() {
-            LabApi.Events.Handlers.ServerEvents.WaitingForPlayers -= OnWaitingForPlayers;
-            LabApi.Events.Handlers.PlayerEvents.Joined -= OnJoined;
+            LabApi.Events.Handlers.ServerEvents.WaitingForPlayers -= this.OnWaitingForPlayers;
+            LabApi.Events.Handlers.PlayerEvents.Joined -= this.OnJoined;
             base.OnDisable();
         }
 
@@ -33,7 +33,7 @@ namespace Instinct.Gameplay.Modules.Lobby {
         }
 
         private void OnRoundStarted() {
-            LabApi.Events.Handlers.ServerEvents.RoundStarted -= OnRoundStarted;
+            LabApi.Events.Handlers.ServerEvents.RoundStarted -= this.OnRoundStarted;
         }
     }
 }

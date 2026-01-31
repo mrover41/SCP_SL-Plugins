@@ -14,20 +14,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Reference Include="0Harmony">
 	    <HintPath>..\libs\0Harmony.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>..\libs\Assembly-CSharp_publicized.dll</HintPath>
 	  </Reference>
 	  <Reference Include="Assembly-CSharp-firstpass">
 	    <HintPath>..\libs\Assembly-CSharp-firstpass.dll</HintPath>
 	  </Reference>
-	  <Reference Include="Assembly-CSharp">
-	    <HintPath>..\libs\Assembly-CSharp.dll</HintPath>
-	  </Reference>
 	  <Reference Include="CommandSystem.Core">
 	    <HintPath>..\libs\CommandSystem.Core.dll</HintPath>
+	  </Reference>
+	  <Reference Include="HintServiceMeow">
+	    <HintPath>..\libs\HintServiceMeow-LabAPI.dll</HintPath>
 	  </Reference>
 	  <Reference Include="LabApi">
 	    <HintPath>..\libs\LabApi.dll</HintPath>
@@ -42,7 +42,10 @@
 	    <HintPath>..\libs\netstandard.dll</HintPath>
 	  </Reference>
 	  <Reference Include="NorthwoodLib">
-	    <HintPath>..\libs\NorthwoodLib.dll</HintPath>
+        <HintPath>..\libs\NorthwoodLib.dll</HintPath>
+      </Reference>
+	  <Reference Include="Pooling">
+		<HintPath>..\libs\Pooling.dll</HintPath>
 	  </Reference>
 	  <Reference Include="System.Buffers">
 	    <HintPath>..\libs\System.Buffers.dll</HintPath>
@@ -80,6 +83,11 @@
 	  <Reference Include="UnityEngine.PhysicsModule">
 	    <HintPath>..\libs\UnityEngine.PhysicsModule.dll</HintPath>
 	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.32" />
+	  <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.7" />
 	</ItemGroup>
 
 </Project>

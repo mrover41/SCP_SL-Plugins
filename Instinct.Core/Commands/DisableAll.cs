@@ -8,7 +8,7 @@ namespace Instinct.Core.Commands {
         public string Description => "disable all";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response) {
-            Loader.Instance?.Disable();
+            CorePlugin.Instance?.Disable();
 
             response = "Done";
             return true;
