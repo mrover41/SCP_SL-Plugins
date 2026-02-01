@@ -1,5 +1,6 @@
 ﻿using System;
 using Instinct.Core.Features.ModuleSystem.Manager;
+using Instinct.Items.Items;
 using LabApi.Features;
 using LabApi.Loader.Features.Plugins;
 
@@ -17,12 +18,14 @@ namespace Instinct.Items {
         public override void Enable() {
             //Plugin.OnLoadPlugin(new Instinct.Core.Events.Args.Plugin.LoadPluginEventArgs("Instinct.Items"));
             //Trangulizer.RegisterItems();
+            
+            CustomItems.CustomItems.RegisterCustomItems(typeof(FuzeGrenade), typeof(Component_Tester), typeof(ItemD));
 
             ModuleManager.RegisterModules(System.Reflection.Assembly.GetExecutingAssembly());
         }
 
         public override void Disable() {
-            //Trangulizer.UnregisterItems();
+            CustomItems.CustomItems.UnRegisterCustomItems(typeof(FuzeGrenade), typeof(Component_Tester), typeof(ItemD));
         }
     }
 }

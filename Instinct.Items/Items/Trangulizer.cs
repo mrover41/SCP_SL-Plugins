@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Instinct.Items.Items {
-    [LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM15)]
+    /*[LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM15)]
     public class Trangulizer : CustomWeapon {
         public override string Description { get; set; } = "Обезвреживает об`екты";
         public override float Weight { get; set; } = 2f;
@@ -111,5 +111,5 @@ namespace Instinct.Items.Items {
 
         public override SpawnProperties SpawnProperties { get; set; } = null;
 
-    }
+    }*/
 }

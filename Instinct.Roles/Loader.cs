@@ -5,7 +5,7 @@ using Instinct.Core.Modules;
 
 namespace Instinct.Roles {
     public class Loader : Plugin<Config> {
-        public static Loader Instance { get; private set; }
+        public static Loader? Instance { get; private set; }
 
         public override string Name => "Instinct.Roles";
         public override string Description => "хз, не придумал";
@@ -24,7 +24,7 @@ namespace Instinct.Roles {
         }
         
         
-        override public void Disable() {
+        public override void Disable() {
             Instance = null;
         }
 

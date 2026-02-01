@@ -3,6 +3,7 @@ using Instinct.Core.Features.ModuleSystem.BaseClass;
 using LabApi.Events.Arguments.PlayerEvents;
 using PlayerRoles;
 using UnityEngine;
+using System.Linq;
 
 namespace Instinct.Gameplay.Modules.Lobby {
     [LoadModule]
@@ -29,7 +30,13 @@ namespace Instinct.Gameplay.Modules.Lobby {
             if (Round.IsRoundStarted) 
                 return;
             ev.Player.SetRole(RoleTypeId.Tutorial);
-            ev.Player.Position = Room.Get(MapGeneration.RoomName.EzIntercom).FirstOrDefault()!.Transform.position + new Vector3(Loader.Instance!.Config!.X, Loader.Instance!.Config!.Y, Loader.Instance!.Config!.Z);
+            
+            var room = Room.Get(MapGeneration.RoomName.EzIntercom).FirstOrDefault();
+            if (room != null)
+            {
+                var offset = new Vector3(Loader.Instance!.Config!.X, Loader.Instance!.Config!.Y, Loader.Instance!.Config!.Z);
+                ev.Player.Position = room.Transform.position + room.Transform.rotation * offset;
+            }
         }
 
         private void OnRoundStarted() {

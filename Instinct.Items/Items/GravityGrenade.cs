@@ -1,9 +1,9 @@
-﻿using MEC;
+﻿using LabApi.Features.Wrappers;
+using MEC;
 using UnityEngine;
 
-namespace Instinct.Items.Items {
-    [CustomItem(ItemType.GrenadeHE)]
-   public class gravityGranate : CustomGrenade {
+namespace Instinct.Items.Items { 
+        /*public class GravityGrenade : ThrowableItem {
         public float Duration { get; set; } = 10f;
         public override ItemType Type { get; set; } = ItemType.GrenadeHE;
         public override float FuseTime { get; set; } = 10;
@@ -41,5 +41,5 @@ namespace Instinct.Items.Items {
             ev.IsAllowed = false;
             base.OnExploding(ev);
         }
-    }
+    }*/
 }

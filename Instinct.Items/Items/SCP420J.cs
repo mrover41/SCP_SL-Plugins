@@ -1,8 +1,8 @@
 ﻿using MEC;
 using System.Collections.Generic;
 
-namespace Instinct.Items.Items {
-    [CustomItem(ItemType.Adrenaline)]
+namespace Instinct.Items.Items { 
+    /*[CustomItem(ItemType.Adrenaline)]
     public class SCP420J : CustomItem {
         public override string Description { get; set; } = ";)";
         public override float Weight { get; set; } = 2f;
@@ -61,5 +61,5 @@ namespace Instinct.Items.Items {
             EffectTypeExtension.SetFogType(fogControl, FogType.Decontamination);
             Timing.CallDelayed(10, () => { this.playersList.Remove(ev.Player); });
         }
-    }
+    }*/
 }

@@ -45,6 +45,15 @@ namespace Instinct.Core.Features.RoleSystem.Managers {
                 _roleInstances.Add(roleInstance);
             }
 
+            public bool HasCRole(short id)
+            {
+                RoleInstanceComponentBase roleInstance = _roleInstances.Find(x => x.Player == player);
+                if (roleInstance == null || roleInstance.CustomRoleBase.RoleConfig.ID == id)
+                    return false;
+
+                return true;
+            }
+
             public void RemoveRole() {
                 for (;;) {
                     RoleInstanceComponentBase roleInstance = _roleInstances.Find(x => x.Player == player);

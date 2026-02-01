@@ -4,7 +4,7 @@ using MEC;
 using UnityEngine;
 
 namespace Instinct.Admin.Commands {
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    /*[CommandHandler(typeof(RemoteAdminCommandHandler))]
     internal class Hivorot : ICommand {
         public string Command => "Huivorot";
 
@@ -27,7 +27,7 @@ namespace Instinct.Admin.Commands {
             return true;
         }
 
-        [Update]
+        //[Update]
         private static void Phys() {
             foreach (Pickup pickup in Pickup.List.Where(x => _player != null && Vector3.Distance(x.Transform.position, _player.Position) < 10)) {
                 if (_player == null) continue;
@@ -38,5 +38,5 @@ namespace Instinct.Admin.Commands {
                 pickup.Rigidbody?.AddForce(pos);
             }
         }
-    }
+    }*/
 }

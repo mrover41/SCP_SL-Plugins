@@ -1,4 +1,5 @@
-﻿using PSettings = InventorySystem.Items.ThrowableProjectiles.ThrowableItem.ProjectileSettings;
+﻿using InventorySystem.Items;
+using PSettings = InventorySystem.Items.ThrowableProjectiles.ThrowableItem.ProjectileSettings;
 
 namespace Instinct.CustomItems.Items;
 
@@ -7,6 +8,15 @@ namespace Instinct.CustomItems.Items;
 /// </summary>
 public abstract class CustomThrowableBase : CustomItemBase
 {
+    public virtual float FuzeTime { get; } = 10;
+
+    public override void Parse(Item item)
+    {
+        base.Parse(item);
+        if (item is not ThrowableItem throwableItem)
+            throw new ArgumentException("ThrowableItem must not be null!");
+    }
+    
     /// <summary>
     /// This <paramref name="player"/> who threw this projectile.
     /// </summary>

@@ -10,9 +10,9 @@ namespace Instinct.Gameplay {
         public string BroadcastMessage { get; set; } = "You are bleeding!";*/
         
         [Description("Lobby config")]
-        public float X { get; set; } = -4.3f;
+        public float X { get; set; } = -5f;
 
-        public float Y { get; set; } = -3;
+        public float Y { get; set; } = -5f;
         public float Z { get; set; } = -2.7f;
     }
 }

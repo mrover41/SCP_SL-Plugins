@@ -13,7 +13,7 @@ namespace Instinct.Gameplay.Patchs {
             
             if (!IntercomDisplay.TrySetDisplay(
                     $"<size=200><color=#{HColor(0.5f)}> ◀✅▶ До начала раунда: {(RoundStart.singleton.NetworkTimer < 1 ? "Скоро начнется!" : RoundStart.singleton.NetworkTimer.ToString())}\n" +
-                    $"Количество игроков: {Player.List.Where(x => x.IsPlayer)} </color></size>")) {
+                    $"Количество игроков: {Player.List.Count - 1} </color></size>")) {
                 Logger.Error("тута ощьиибочкааа (интерком текст не поставил)");
             }
             

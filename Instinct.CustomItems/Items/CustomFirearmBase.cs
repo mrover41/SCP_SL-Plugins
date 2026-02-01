@@ -23,6 +23,8 @@ public abstract class CustomFirearmBase : CustomItemBase, IModuleChangable
     /// </summary>
     public virtual float Damage { get; } = 0;
 
+    public virtual short ClipSize { get; } = 0;
+
     /// <summary>
     /// Override certain Loggerasses.
     /// </summary>
@@ -40,6 +42,7 @@ public abstract class CustomFirearmBase : CustomItemBase, IModuleChangable
         if (item is not FirearmItem firearmItem)
             throw new ArgumentException("FirearmItem must not be null!");
         firearmItem.AttachmentsCode = firearmItem.GetCodeFromAttachmentNamesRaw([..this.AttachmentNames]);
+        firearmItem.StoredAmmo = ClipSize;
         
         foreach (IOverride? @override in this.Overrides) {
             if (firearmItem.Base.TryGetModule(@override.OverrideType, out object module, false))

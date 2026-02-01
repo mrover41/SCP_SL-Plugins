@@ -1,34 +1,20 @@
-﻿using UnityEngine;
+﻿using Instinct.CustomItems.Items;
+using LabApi.Features.Wrappers;
+using UnityEngine;
 
 namespace Instinct.Items.Items {
-    [LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM18)]
-    public class Component_Tester : CustomWeapon {
+    public class Component_Tester : CustomFirearmBase
+    {
+        public override string CustomItemName { get; set; } = "Component_Tester";
         public override string Description { get; set; } = "Инструмент для разработчика";
-        public override float Weight { get; set; } = 2f;
-        public override string Name { get; set; } = "Component_Tester";
-        public override uint Id { get; set; } = 4970;
-        public override ItemType Type { get; set; } = ItemType.GunCOM18;
-        public override float Damage { get; set; } = 0;
-        public override byte ClipSize { get; set; } = 250;
+        public override float Weight { get; } = 2f;
+        public override ItemType Type { get; } = ItemType.GunCOM18;
+        public override float Damage { get; } = 0;
+        public override short ClipSize { get; } = 250;
 
-        protected override void SubscribeEvents() {
-            base.SubscribeEvents();
-            LabApi.Events.Handlers.Player.Shot += Wapon;
-        }
-
-        protected override void UnsubscribeEvents() {
-            LabApi.Events.Handlers.Player.Shot -= Wapon;
-            base.UnsubscribeEvents();
-        }
-
-        private void Wapon(ShotEventArgs ev) {
-            if (!Check(ev.Item)) {
-                return;
-            } if (ev.Target != null) {
-                ev.CanHurt = false;
-                Hitmarker.SendHitmarkerDirectly(ev.Player.ReferenceHub, 1.5f);
-                Ragdoll.CreateAndSpawn(ev.Target.Role.Type, ev.Target.Nickname, "Душа покинула его убегая от парадоксов", ev.Target.Transform.position, ev.Target.Transform.rotation);
-            } if (Physics.Linecast(ev.Player.CameraTransform.position, ev.RaycastHit.point, out RaycastHit raycastHit)) {
+        public override void OnShooting(Player player, FirearmItem weapon, bool isAllowedHelper)
+        {
+            if (Physics.Raycast(player.Camera.position, Vector3.forward, out RaycastHit raycastHit)) {
                 Component[] componentsP = raycastHit.transform.GetComponentsInParent<Component>();
                 Component[] componentsC = raycastHit.transform.GetComponentsInChildren<Component>();
                 //DisplayCore displayCore = DisplayCore.Get(ev.Player.ReferenceHub);
@@ -42,11 +28,11 @@ namespace Instinct.Items.Items {
                     cc += $"{component.GetType().Name}\n";
                 }
 
-                Logger.Info(raycastHit.transform.gameObject);
-                Logger.Info("++++++++++++++++++++++++++++++");
-                Logger.Info(cp);
-                Logger.Info("===============================");
-                Logger.Info(cc);
+                LabApi.Features.Console.Logger.Info(raycastHit.transform.gameObject);
+                LabApi.Features.Console.Logger.Info("++++++++++++++++++++++++++++++");
+                LabApi.Features.Console.Logger.Info(cp);
+                LabApi.Features.Console.Logger.Info("===============================");
+                LabApi.Features.Console.Logger.Info(cc);
 
                 //var elementReference_1 = new TimedElemRef<SetElement>();
                 //displayCore.SetElemTemp(cp, 900, TimeSpan.FromSeconds(5), elementReference_1);
@@ -54,9 +40,8 @@ namespace Instinct.Items.Items {
                 //var elementReference_2 = new TimedElemRef<SetElement>();
                 //displayCore.SetElemTemp(cc, 900, TimeSpan.FromSeconds(5), elementReference_2);
             }
+            
+            base.OnShooting(player, weapon, isAllowedHelper);
         }
-
-
-        public override SpawnProperties SpawnProperties { get; set; } = null;
     }
 }
