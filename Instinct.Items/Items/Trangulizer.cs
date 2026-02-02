@@ -1,57 +1,54 @@
 ﻿using MEC;
 using System.Collections.Generic;
+using Instinct.Core.Enums;
+using Instinct.Core.Extensions;
+using Instinct.CustomItems.Items;
+using LabApi.Features.Wrappers;
+using PlayerRoles;
+using PlayerStatsSystem;
 using UnityEngine;
 
 namespace Instinct.Items.Items {
-    /*[LabApi.API.Features.Attributes.CustomItem(ItemType.GunCOM15)]
-    public class Trangulizer : CustomWeapon {
+    public class Trangulizer : CustomFirearmBase {
+        public override string CustomItemName { get; set; } = "Транквилизатор";
         public override string Description { get; set; } = "Обезвреживает об`екты";
-        public override float Weight { get; set; } = 2f;
-        public override string Name { get; set; } = "Транквилизатор";
-        public override uint Id { get; set; } = 120;
-        public override ItemType Type { get; set; } = ItemType.GunCOM15;
-        public override float Damage { get; set; } = 0;
-        public override byte ClipSize { get; set; } = 7;
+        public override float Weight => 2f;
+        public override ItemType Type => ItemType.GunCOM15;
+        public override float Damage => 0;
 
-        protected override void SubscribeEvents() {
-            base.SubscribeEvents();
-            LabApi.Events.Handlers.Player.Shot += Sh;
-            LabApi.Events.Handlers.Player.ChangedItem += Select_Info;
-            LabApi.Events.Handlers.Player.ReloadingWeapon += Reload;
-        }
-    
-        protected override void UnsubscribeEvents() {
-            LabApi.Events.Handlers.Player.Shot -= Sh;
-            LabApi.Events.Handlers.Player.ChangedItem -= Select_Info;
-            LabApi.Events.Handlers.Player.ReloadingWeapon -= Reload;
-            base.UnsubscribeEvents();
-        }
+        public override void OnHurt(Player player, Player attacker, FirearmDamageHandler firearmDamage) {
+            if (player.IsGodModeEnabled) return;
 
-        private void Select_Info(ChangedItemEventArgs ev) { 
-            if (Check(ev.Item)) {
-                ev.Player.Broadcast(4, "<b><color=#FCF7D9>Вы подобрали</color> <color=#DB633C>Транквилизатор</color></b>");
+            if (player.IsSCP) {
+                this.ScpEffect(player, attacker);
+            } 
+            else {
+                Timing.RunCoroutine(this.Delay(player));
             }
+            firearmDamage.Damage = 0;
         }
 
-        private void Sh(ShotEventArgs ev) {
-            if (ev.Target == null) return;
-            if (!Check(ev.Item)) return;
-            if (ev.Target.IsGodModeEnabled) return;
+        public override void OnChanged(Player player, Item oldItem, Item newItem, bool changedToThisItem) {
+            if (!changedToThisItem) return;
+            player.ShowCoreHint($"<b><color=#FCF7D9>Вы подобрали</color> <color=#DB633C>Транквилизатор</color></b>", 4);
+            
+            base.OnChanged(player, oldItem, newItem, changedToThisItem);
+        }
 
-            if (ev.Target.IsScp) {
-                this.SCPEffect(ev);
-            } else {
-                Timing.RunCoroutine(this.Delay(ev.Target));
+        public override void OnReloading(Player player, FirearmItem weapon, bool isAllowedHelper) {
+            isAllowedHelper = false;
+        }
+
+        private IEnumerator<float> Delay(Player player) {
+            if (player.CurrentItem != null) {
+                player.DropItem(player.CurrentItem);
             }
-            ev.CanHurt = false;
-        }
-
-        private IEnumerator<float> Delay(LabApi.API.Features.Player player) {
-            player.CurrentItem = null;
+            
+            Ragdoll rg = Ragdoll.SpawnRagdoll(player.Role, player.Position, player.Rotation, new CustomReasonDamageHandler("Прилёг отдохнуть"), player.DisplayName, player.Scale);
             player.Inventory.enabled = false;
             player.Scale = new Vector3(0.5f, 0.5f, 0.5f);
             player.IsGodModeEnabled = true;
-            Ragdoll rg = Ragdoll.CreateAndSpawn(player.Role.Type, player.Nickname, "Немного помялся", player.Position, player.Rotation);
+            
             player.EnableEffect(EffectType.Deafened);
             player.EnableEffect(EffectType.Invisible);
             player.EnableEffect(EffectType.Ensnared);
@@ -66,50 +63,67 @@ namespace Instinct.Items.Items {
             player.Scale = new Vector3(1, 1, 1);
             player.Inventory.enabled = true;
             player.IsGodModeEnabled = false;
-            rg.Destroy();
+            rg?.Destroy();
         }
 
-        private void SCPEffect(ShotEventArgs ev) {
-            switch (ev.Target.Role.Type) {
-                case RoleTypeId.Scp173:
-                    break;
+        private void ScpEffect(Player target, Player attacker) {
+            switch (target.Role) {
                 case RoleTypeId.Scp106:
-                    Hitmarker.SendHitmarkerDirectly(ev.Player.ReferenceHub, 1.5f);
-                    ev.Target.EnableEffect(EffectType.Slowness, 25, 10);
-                    ev.Target.EnableEffect(EffectType.Blurred, 255, 10);
+                    Hitmarker.SendHitmarkerDirectly(attacker.ReferenceHub, 1.5f);
+                    target.EnableEffect(EffectType.Slowness, 25, 10);
+                    target.EnableEffect(EffectType.Blurred, 255, 10);
                     break;
                 case RoleTypeId.Scp049:
-                    Hitmarker.SendHitmarkerDirectly(ev.Player.ReferenceHub, 1.5f);
-                    ev.Target.EnableEffect(EffectType.SinkHole, 10, 10);
-                    ev.Target.EnableEffect(EffectType.AmnesiaVision, 255, 10);
-                    ev.Target.EnableEffect(EffectType.Blurred, 255, 10);
+                    Hitmarker.SendHitmarkerDirectly(attacker.ReferenceHub, 1.5f);
+                    target.EnableEffect(EffectType.SinkHole, 10, 10);
+                    target.EnableEffect(EffectType.AmnesiaVision, 255, 10);
+                    target.EnableEffect(EffectType.Blurred, 255, 10);
                     break;
                 case RoleTypeId.Scp096:
-                    Hitmarker.SendHitmarkerDirectly(ev.Player.ReferenceHub, 1.5f);
-                    ev.Target.EnableEffect(EffectType.SinkHole, 10, 10);
-                    ev.Target.EnableEffect(EffectType.Blurred, 255, 10);
+                    Hitmarker.SendHitmarkerDirectly(attacker.ReferenceHub, 1.5f);
+                    target.EnableEffect(EffectType.SinkHole, 10, 10);
+                    target.EnableEffect(EffectType.Blurred, 255, 10);
                     break;
                 case RoleTypeId.Scp3114:
-                    Hitmarker.SendHitmarkerDirectly(ev.Player.ReferenceHub, 1.5f);
-                    ev.Target.EnableEffect(EffectType.Flashed, 255, 10);
-                    ev.Target.EnableEffect(EffectType.Deafened, 255, 10);
-                    ev.Target.EnableEffect(EffectType.SinkHole, 10, 10);
+                    Hitmarker.SendHitmarkerDirectly(attacker.ReferenceHub, 1.5f);
+                    target.EnableEffect(EffectType.Flashed, 255, 10);
+                    target.EnableEffect(EffectType.Deafened, 255, 10);
+                    target.EnableEffect(EffectType.SinkHole, 10, 10);
                     break;
                 case RoleTypeId.Scp939:
-                    Hitmarker.SendHitmarkerDirectly(ev.Player.ReferenceHub, 1.5f);
-                    ev.Target.EnableEffect(EffectType.Slowness, 40, 10);
-                    ev.Target.EnableEffect(EffectType.AmnesiaVision, 200, 10);
+                    Hitmarker.SendHitmarkerDirectly(attacker.ReferenceHub, 1.5f);
+                    target.EnableEffect(EffectType.Slowness, 40, 10);
+                    target.EnableEffect(EffectType.AmnesiaVision, 200, 10);
+                    break;
+                case RoleTypeId.None:
+                case RoleTypeId.Scp173:
+                case RoleTypeId.ClassD:
+                case RoleTypeId.Spectator:
+                case RoleTypeId.NtfSpecialist:
+                case RoleTypeId.Scientist:
+                case RoleTypeId.Scp079:
+                case RoleTypeId.ChaosConscript:
+                case RoleTypeId.Scp0492:
+                case RoleTypeId.NtfSergeant:
+                case RoleTypeId.NtfCaptain:
+                case RoleTypeId.NtfPrivate:
+                case RoleTypeId.Tutorial:
+                case RoleTypeId.FacilityGuard:
+                case RoleTypeId.CustomRole:
+                case RoleTypeId.ChaosRifleman:
+                case RoleTypeId.ChaosMarauder:
+                case RoleTypeId.ChaosRepressor:
+                case RoleTypeId.Overwatch:
+                case RoleTypeId.Filmmaker:
+                case RoleTypeId.Destroyed:
+                case RoleTypeId.Flamingo:
+                case RoleTypeId.AlphaFlamingo:
+                case RoleTypeId.ZombieFlamingo:
+                case RoleTypeId.NtfFlamingo:
+                case RoleTypeId.ChaosFlamingo:
+                default:
                     break;
             }
         }
-
-        private void Reload(ReloadingWeaponEventArgs ev) { 
-            if (Check(ev.Item)) {
-                ev.IsAllowed = false;
-            }
-        }
-
-        public override SpawnProperties SpawnProperties { get; set; } = null;
-
-    }*/
+    }
 }
