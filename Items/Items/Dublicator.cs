@@ -71,9 +71,9 @@ public class ItemD : CustomWeapon {
         }
     }
 
-    //public override SpawnProperties SpawnProperties { get; set; } = null;
+    public override SpawnProperties SpawnProperties { get; set; } = null;
 
-    public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties() {
+    /*public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties() {
         Limit = 1,
         DynamicSpawnPoints = new List<DynamicSpawnPoint> {
             new DynamicSpawnPoint()
@@ -88,5 +88,5 @@ public class ItemD : CustomWeapon {
                 Position = new UnityEngine.Vector3(0f, 0f, 0f), Name = "Дубликатор"
             }
         }
-    };
+    };*/
 }
