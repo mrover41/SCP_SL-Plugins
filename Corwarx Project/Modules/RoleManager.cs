@@ -13,13 +13,15 @@ namespace Corwarx_Project.Modules {
     public class RoleManager : ModuleBase {
         public override void OnEnable() {
             Exiled.Events.Handlers.Player.Left += OnDisconnect;
-            Exiled.Events.Handlers.Server.RoundStarted += OmStartRound;
+            Exiled.Events.Handlers.Server.RoundStarted += OnStartRound;
+            Exiled.Events.Handlers.Player.Died += OnDie;
             base.OnEnable();
         }
 
         public override void OnDisable() {
             Exiled.Events.Handlers.Player.Left -= OnDisconnect;
-            Exiled.Events.Handlers.Server.RoundStarted -= OmStartRound;
+            Exiled.Events.Handlers.Server.RoundStarted -= OnStartRound;
+            Exiled.Events.Handlers.Player.Died -= OnDie;
             base.OnDisable();
         }
 
@@ -27,7 +29,7 @@ namespace Corwarx_Project.Modules {
             ev.Player.RemoveRole();
         }
 
-        private void OmStartRound() {
+        private void OnStartRound() {
             foreach (Player player in  Player.List) {
                 if (player == null) return;
            
@@ -35,6 +37,10 @@ namespace Corwarx_Project.Modules {
            
                 SpawnManager.SpawnPlayer(player, SpawnReason.RoundStart, faction);
             }
+        }
+
+        private void OnDie(DiedEventArgs ev) {
+            ev.Player.RemoveRole();
         }
     }
 }

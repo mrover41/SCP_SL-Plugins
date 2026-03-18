@@ -18,6 +18,8 @@ namespace Corwarx_Roles.Commands {
 
             if (arguments.Count < 1) {
                 executer.RemoveRole();
+                response = "Removed role";
+                return true;
             }
             executer.AddRole(int.Parse(arguments.First()));
 

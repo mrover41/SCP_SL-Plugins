@@ -1,4 +1,5 @@
-﻿using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
+﻿using System;
+using Corwarx_Project.Core.Features.ModuleSystem.Atributies;
 using Corwarx_Project.Features.ModuleSystem.BaseClass;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -14,17 +15,23 @@ namespace Gameplay.Modules.Lobby {
 
             Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingForPlayers;
             Exiled.Events.Handlers.Player.Verified += OnVerified;
+            Exiled.Events.Handlers.Server.RoundStarted += OnRoundStarted;
             base.OnEnable();
         }
         
         public override void OnDisable() {
             Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingForPlayers;
             Exiled.Events.Handlers.Player.Verified -= OnVerified;
+            Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
             base.OnDisable();
         }
 
         private void OnWaitingForPlayers() {
             GameObject.Find("StartRound").transform.localScale = Vector3.zero;
+        }
+
+        private void OnRoundStart() {
+            Exiled.API.Features.Intercom.DisplayText = String.Empty;
         }
 
         private void OnVerified(VerifiedEventArgs ev) {

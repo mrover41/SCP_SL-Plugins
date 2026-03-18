@@ -14,7 +14,11 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
         
         public static void RegisterAllRoles(Assembly asm) {
             foreach (Type type in asm.GetTypes().Where(t => t.GetCustomAttribute<LoadRoleAttribute>() != null)) {
-                Roles.Add(Activator.CreateInstance(type) as RoleBase);
+                RoleBase role = Activator.CreateInstance(type) as RoleBase;
+                
+                if (role == null || !role.RoleConfig.IsEnabled) return;
+                
+                Roles.Add(role);
                 
                 Log.Info($"Registered role {type.Name}");
             }

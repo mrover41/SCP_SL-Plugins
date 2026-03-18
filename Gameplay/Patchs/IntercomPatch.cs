@@ -8,8 +8,8 @@ namespace Gameplay.Patchs {
         [HarmonyPrefix]
         private static bool OnUpdate(PlayerRoles.Voice.Intercom __instance) {
             if (!Round.IsLobby) return true;
-            Exiled.API.Features.Intercom.DisplayText = $"<size=200><color=#{HColor(0.5f)}> ◀✅▶ До начала раунда: {(Round.LobbyWaitingTime == -2 ? "неизвестно" : Round.LobbyWaitingTime.ToString())}\n" +
-                $"Количество игроков: {Player.List.Count} </color></size>";
+            Exiled.API.Features.Intercom.DisplayText = $"<size=200><color=#{HColor(0.5f)}> ◀✅▶ До початку раунду: {(Round.LobbyWaitingTime == -2 ? "неизвестно" : Round.LobbyWaitingTime.ToString())}\n" +
+                $"Кількість гравців: {Player.List.Count} </color></size>";
             return true;
         }
 

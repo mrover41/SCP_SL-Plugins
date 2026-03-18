@@ -12,5 +12,6 @@ namespace Corwarx_Project.Features.RoleSystem.Containers {
         public RoleTypeId RoleTypeId { get; set; }
         public List<ItemType> Items { get; set; }
         public List<Type> CustomItems { get; set; }
+        public bool IsEnabled { get; set; }
     }
 }

@@ -12,7 +12,17 @@ namespace Corwarx_Roles {
             Name = "TestRole",
             Description = "Test Role",
             Team = Team.ClassD,
-            RoleTypeId = RoleTypeId.ClassD
+            RoleTypeId = RoleTypeId.ClassD,
+            IsEnabled = false
+        };
+        
+        public RoleConfig SCP035RoleConfig { get; set; } = new RoleConfig {
+            ID = 35,
+            Name = "SCP035",
+            Description = "SCP035 Role",
+            RoleTypeId = RoleTypeId.Tutorial,
+            Team = Team.SCPs,
+            IsEnabled = true
         };
 
         public RoleConfig MedicRoleConfig { get; set; } = new RoleConfig {
@@ -28,7 +38,8 @@ namespace Corwarx_Roles {
                 typeof(Trangulizer)
             },
             RoleTypeId = RoleTypeId.Scientist,
-            Team = Team.Scientists
+            Team = Team.Scientists,
+            IsEnabled = true
         };
 
         public bool IsEnabled { get; set; } = true;
