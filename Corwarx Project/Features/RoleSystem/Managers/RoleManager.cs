@@ -34,7 +34,7 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             RoleInstanceComponentBase roleInstance = (RoleInstanceComponentBase)Activator.CreateInstance(type, role, player);
             
             role.EnableRole(player);
-            roleInstance.OnAdd();
+            //roleInstance.OnAdd();
             
             RoleInstances.Add(roleInstance);
         }
