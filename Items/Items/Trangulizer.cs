@@ -34,7 +34,7 @@ namespace Items.Items {
         }
         void Select_Info(ChangedItemEventArgs ev) { 
             if (Check(ev.Item)) {
-                ev.Player.Broadcast(4, "<b><color=#FCF7D9>Вы подобрали</color> <color=#DB633C>Транквилизатор</color></b>");
+                ev.Player.Broadcast(4, "<b><color=#FCF7D9>Вы пiдняли</color> <color=#DB633C>Транквилизатор</color></b>");
             }
         }
         void Sh(ShotEventArgs ev) {

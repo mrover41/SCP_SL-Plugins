@@ -15,7 +15,26 @@ namespace Corwarx_Roles {
             RoleTypeId = RoleTypeId.ClassD,
             IsEnabled = false
         };
-        
+
+        public RoleConfig SCP343RoleConfig { get; set; } = new RoleConfig {
+            ID = 343,
+            Name = "SCP343",
+            Description = "Бог",
+            Items = new List<ItemType>() {
+                ItemType.Medkit,
+                ItemType.Medkit,
+                ItemType.Medkit,
+                ItemType.Medkit,
+                ItemType.Medkit,
+                ItemType.Medkit,
+                ItemType.Medkit,
+                ItemType.Medkit
+            },
+            RoleTypeId = RoleTypeId.Scientist,
+            Team = Team.Dead,
+            IsEnabled = true
+        };
+
         public RoleConfig SCP035RoleConfig { get; set; } = new RoleConfig {
             ID = 35,
             Name = "SCP035",

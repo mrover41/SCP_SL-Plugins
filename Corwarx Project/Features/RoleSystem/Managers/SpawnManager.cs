@@ -14,7 +14,7 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
         }
 
         public static bool SpawnPlayer(Player player, SpawnReason reason, PlayerRoles.Faction faction) {
-            foreach (RoleBase role in RoleManager.Roles) {
+            foreach (RoleBase role in RoleManager.Roles.Values) {
                 bool can = true;
                 
                 foreach (SpawnConditionBase condition in role.SpawnConditions) {

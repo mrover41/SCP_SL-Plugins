@@ -5,7 +5,12 @@ using Exiled.API.Features.Pickups;
 using InventorySystem.Items.Pickups;
 using System.Collections.Generic;
 using System.Linq;
+using Corwarx_Project.Features.RoleSystem.BaseClass.Role;
+using Corwarx_Project.Features.RoleSystem.Managers;
+using Corwarx_Project.Modules;
+using PlayerRoles;
 using UnityEngine;
+using RoleManager = Corwarx_Project.Features.RoleSystem.Managers.RoleManager;
 
 namespace Corwarx_Project.Extensions {
     public static class PlayerExtensions {
@@ -36,6 +41,7 @@ namespace Corwarx_Project.Extensions {
 
             return Player.Get(hit.transform.GetComponentInParent<ReferenceHub>());
         }
+        
 
         public static string ToShortString(this Player pl) => pl is null || pl.IsHost ? "Server" : $"{pl.Nickname} ({pl.Id}|{pl.UserId})";
         public static List<Player> FindNearby(this Player pl, float distance) => Player.List.Where(x => Vector3.Distance(pl.Position, x.Position) <= distance && x != pl).ToList();

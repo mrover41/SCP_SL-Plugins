@@ -9,8 +9,10 @@ using Exiled.API.Features;
 
 namespace Corwarx_Project.Features.RoleSystem.Managers {
     public static class RoleManager {
-        internal static List<RoleBase> Roles { get; private set; } = new List<RoleBase>();
-        private static List<RoleInstanceComponentBase> RoleInstances = new List<RoleInstanceComponentBase>();
+        //internal static List<RoleBase> Roles { get; private set; } = new List<RoleBase>();
+        //private static List<RoleInstanceComponentBase> RoleInstances = new List<RoleInstanceComponentBase>();
+        internal static Dictionary<int, RoleBase> Roles { get; private set; } = new Dictionary<int, RoleBase>();
+        public static readonly Dictionary<Player, RoleInstanceComponentBase> RoleInstances = new Dictionary<Player, RoleInstanceComponentBase>();
         
         public static void RegisterAllRoles(Assembly asm) {
             foreach (Type type in asm.GetTypes().Where(t => t.GetCustomAttribute<LoadRoleAttribute>() != null)) {
@@ -18,14 +20,14 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
                 
                 if (role == null || !role.RoleConfig.IsEnabled) return;
                 
-                Roles.Add(role);
+                Roles.Add(role.RoleConfig.ID, role);
                 
                 Log.Info($"Registered role {type.Name}");
             }
         }
 
         public static void AddRole(this Player player, int id) {
-            RoleBase role = Roles.Find(x => x.RoleConfig.ID == id);
+            RoleBase role = Roles[id];
             if (role == null)
                 return;
             
@@ -36,7 +38,7 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             role.EnableRole(player);
             //roleInstance.OnAdd();
             
-            RoleInstances.Add(roleInstance);
+            RoleInstances.Add(player, roleInstance);
         }
         
         public static void AddRole(this Player player, RoleBase role) {
@@ -48,22 +50,25 @@ namespace Corwarx_Project.Features.RoleSystem.Managers {
             RoleInstanceComponentBase roleInstance = (RoleInstanceComponentBase)Activator.CreateInstance(type, role, player);
             
             role.EnableRole(player);
-            roleInstance.OnAdd();
             
-            RoleInstances.Add(roleInstance);
+            RoleInstances.Add(player, roleInstance);
         }
         
         public static void RemoveRole(this Player player) {
             for (;;) {
-                RoleInstanceComponentBase roleInstance = RoleInstances.Find(x => x.Player == player);
+                RoleInstanceComponentBase roleInstance = RoleInstances.TryGetValue(player, out var role) ? role : null;
                 if (roleInstance == null)
                     return;
             
                 roleInstance.OnRemove();
                 roleInstance.Role.DisableRole(player);
             
-                RoleInstances.Remove(roleInstance);
+                RoleInstances.Remove(player);
             }
+        }
+
+        public static RoleInstanceComponentBase GetRole(this Player player) {
+            return RoleInstances.TryGetValue(player, out var role) ? role : null;
         }
     }
 }
