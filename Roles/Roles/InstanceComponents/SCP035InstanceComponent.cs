@@ -12,11 +12,12 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
         public SCP035InstanceComponent(RoleBase role, Player player) : base(role, player) {
         }
 
-        private static readonly ushort Damage = 3;
+        private static readonly ushort Damage = 2;
         //private CoroutineHandle _coroutineHandle;
 
         public override void OnAdd() {
             Exiled.Events.Handlers.Player.Hurting += HurtingPlayer;
+            Exiled.Events.Handlers.Player.PickingUpItem += OnUpItem;
             
             Timing.RunCoroutine(HealthCorutine(), $"SCP035_{Player.UserId}");
             Player.CustomInfo = "<color=red>SCP-035</color>";
@@ -25,6 +26,7 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
 
         public override void OnRemove() {
             Exiled.Events.Handlers.Player.Hurting -= HurtingPlayer;
+            Exiled.Events.Handlers.Player.PickingUpItem -= OnUpItem;
             
             Timing.KillCoroutines($"SCP035_{Player.UserId}");
             Player.CustomInfo = String.Empty;
@@ -36,10 +38,21 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
             if (ev.Player == Player && ev.DamageHandler.Type == DamageType.Scp) ev.IsAllowed = false; 
         }
 
+        private void OnUpItem(PickingUpItemEventArgs ev) {
+            if (ev.Player != Player) return;
+            switch (ev.Pickup.Type) {
+                case ItemType.SCP1509:
+                    ev.IsAllowed = false;
+                    break;
+            }
+        }
+        
         IEnumerator<float> HealthCorutine() {
             for (;;) {
                 yield return Timing.WaitForSeconds(1);
-                Player.Hurt(Damage);
+                Player.Hurt(Damage, DamageType.Bleeding);
+                //Player.Health -= Damage;
+                //if (Player.Health <= 0) Player.Kill(DamageType.ParticleDisruptor);
             }
         }
     }

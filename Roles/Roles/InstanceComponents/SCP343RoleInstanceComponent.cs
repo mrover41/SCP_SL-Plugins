@@ -15,12 +15,16 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
         public override void OnAdd() {
             Exiled.Events.Handlers.Player.DroppingItem += OnDroppingItem;
             Exiled.Events.Handlers.Player.UsingItem += OnUsingItem;
+            Exiled.Events.Handlers.Player.PickingUpItem += OnPkItem;
+            Exiled.Events.Handlers.Player.Handcuffing += OnCuffingPlayer;
             base.OnAdd();
         }
 
         public override void OnRemove() {
             Exiled.Events.Handlers.Player.DroppingItem -= OnDroppingItem;
             Exiled.Events.Handlers.Player.UsingItem -= OnUsingItem;
+            Exiled.Events.Handlers.Player.PickingUpItem -= OnPkItem;
+            Exiled.Events.Handlers.Player.Handcuffing -= OnCuffingPlayer;
             
             if (handle.IsValid) Timing.KillCoroutines(handle);
             base.OnRemove();
@@ -28,6 +32,14 @@ namespace Corwarx_Roles.Roles.InstanceComponents {
 
         private void OnDroppingItem(DroppingItemEventArgs ev) {
             if (ev.Player == Player) ev.IsAllowed = false;
+        }
+
+        private void OnPkItem(PickingUpItemEventArgs ev) {
+           if (ev.Player == Player) ev.IsAllowed = false; 
+        }
+
+        private void OnCuffingPlayer(HandcuffingEventArgs ev) {
+            if (ev.Target == Player) ev.IsAllowed = false;
         }
 
         private void OnUsingItem(UsingItemEventArgs ev) {

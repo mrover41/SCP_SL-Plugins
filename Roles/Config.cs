@@ -18,7 +18,7 @@ namespace Corwarx_Roles {
 
         public RoleConfig SCP343RoleConfig { get; set; } = new RoleConfig {
             ID = 343,
-            Name = "SCP343",
+            Name = "SCP 343",
             Description = "Бог",
             Items = new List<ItemType>() {
                 ItemType.Medkit,
@@ -31,15 +31,27 @@ namespace Corwarx_Roles {
                 ItemType.Medkit
             },
             RoleTypeId = RoleTypeId.Scientist,
-            Team = Team.Dead,
+            Team = Team.OtherAlive,
             IsEnabled = true
         };
 
         public RoleConfig SCP035RoleConfig { get; set; } = new RoleConfig {
             ID = 35,
-            Name = "SCP035",
+            Name = "SCP 035",
             Description = "SCP035 Role",
             RoleTypeId = RoleTypeId.Tutorial,
+            Team = Team.SCPs,
+            IsEnabled = true
+        };
+
+        public RoleConfig SCP0762RoleConfig { get; set; } = new RoleConfig {
+            ID = 76,
+            Name = "SCP 076",
+            Description = "SCP076 Role",
+            Items = new List<ItemType>() {
+                ItemType.SCP1509,
+            },
+            RoleTypeId = RoleTypeId.Scp0492,
             Team = Team.SCPs,
             IsEnabled = true
         };

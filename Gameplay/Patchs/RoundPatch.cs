@@ -1,5 +1,7 @@
-﻿using Exiled.API.Features;
+﻿using System;
+using Exiled.API.Features;
 using HarmonyLib;
+using MEC;
 using PlayerRoles;
 
 namespace Gameplay.Patchs {
@@ -10,6 +12,7 @@ namespace Gameplay.Patchs {
             foreach (Player player in Player.List) {
                 player.Role.Set(RoleTypeId.None);
             }
+            
             return true;
         }
     }

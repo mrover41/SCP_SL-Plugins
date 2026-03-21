@@ -19,11 +19,13 @@ namespace Corwarx_Roles.Roles {
             player.Teleport(RoomType.LczGlassBox);
             player.MaxHealth = 500;
             player.Health = 500;
+            player.CustomInfo = "<color=#ff0000>SCP035</color>";
             player.Broadcast(5, "<b>Ви стали <color=#ff0000>SCP035</color></b>\0");
             base.OnAdd(player);
         }
 
         protected override void OnRemove(Player player) {
+            player.CustomInfo = string.Empty;
             base.OnRemove(player);
         }
     }
